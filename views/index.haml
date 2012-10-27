@@ -1,9 +1,13 @@
 !!!
 %html
   %head
+    %link{rel: 'stylesheet', href: '/compiled/application.css'}
     %script{src: '/compiled/application.js'}
   %body
-    %button#snap Snap!
-    %button#save Save
-    %video#webcam
-    %canvas#photo
+    .container
+      .header
+        %h1 Mustachaday!
+      %button#snap Snap!
+      %button#save Save
+      %video#webcam
+      %canvas#photo
