@@ -47,6 +47,6 @@ window.webcam =
     conVideo = $(webcam)
     conPhoto.prependTo $("#primary-container")
     conVideo.prependTo $("#primary-container")
-    navigator.getUserMedia or (navigator.getUserMedia = navigator.mozGetUserMedia or navigator.webkitGetUserMedia or navigator.msGetUserMedia)
+    navigator.getUserMedia or= (navigator.mozGetUserMedia or navigator.webkitGetUserMedia or navigator.msGetUserMedia)
     @play()
     setupPhotoBooth()
