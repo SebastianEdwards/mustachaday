@@ -3,4 +3,4 @@
 #= require_self
 
 $ ->
-  webcam.initialize()
+  webcamAPI.initialize()

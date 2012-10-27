@@ -1,16 +1,13 @@
-window.webcam =
+window.webcamAPI =
   play: ->
     if navigator.getUserMedia
       navigator.getUserMedia
-        webcam: true
-        toString: ->
-          "webcam"
+        video: true
       , @onSuccess, @onError
     else
       alert "getUserMedia is not supported in this browser.", true
 
   onSuccess: (stream) ->
-    source = undefined
     source = window.webkitURL.createObjectURL(stream)
     webcam.autoplay = true
     webcam.src = source
@@ -20,10 +17,10 @@ window.webcam =
 
   setupPhotoBooth: ->
     snap = $("#snap")
-    snap.click takePhoto
+    snap.click @takePhoto
     saveButton = $("#save")
     saveButton.disabled = true
-    saveButton.click savePhoto
+    saveButton.click @savePhoto
 
   takePhoto: ->
     photo.width = webcam.width
@@ -39,14 +36,8 @@ window.webcam =
     document.location.href = data
 
   initialize: ->
-    webcam = $("#webcam").get([0])
-    photo = $("#photo").get([0])
     webcam.width = 470
     webcam.height = 353
-    conPhoto = $(photo)
-    conVideo = $(webcam)
-    conPhoto.prependTo $("#primary-container")
-    conVideo.prependTo $("#primary-container")
     navigator.getUserMedia or= (navigator.mozGetUserMedia or navigator.webkitGetUserMedia or navigator.msGetUserMedia)
     @play()
-    setupPhotoBooth()
+    @setupPhotoBooth()

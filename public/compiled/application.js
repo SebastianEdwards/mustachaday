@@ -9441,14 +9441,11 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
 })( window );
 (function() {
 
-  window.webcam = {
+  window.webcamAPI = {
     play: function() {
       if (navigator.getUserMedia) {
         return navigator.getUserMedia({
-          webcam: true,
-          toString: function() {
-            return "webcam";
-          }
+          video: true
         }, this.onSuccess, this.onError);
       } else {
         return alert("getUserMedia is not supported in this browser.", true);
@@ -9456,7 +9453,6 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
     },
     onSuccess: function(stream) {
       var source;
-      source = void 0;
       source = window.webkitURL.createObjectURL(stream);
       webcam.autoplay = true;
       return webcam.src = source;
@@ -9467,10 +9463,10 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
     setupPhotoBooth: function() {
       var saveButton, snap;
       snap = $("#snap");
-      snap.click(takePhoto);
+      snap.click(this.takePhoto);
       saveButton = $("#save");
       saveButton.disabled = true;
-      return saveButton.click(savePhoto);
+      return saveButton.click(this.savePhoto);
     },
     takePhoto: function() {
       var context, saveButton;
@@ -9488,18 +9484,11 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
       return document.location.href = data;
     },
     initialize: function() {
-      var conPhoto, conVideo, photo, webcam;
-      webcam = $("#webcam").get([0]);
-      photo = $("#photo").get([0]);
       webcam.width = 470;
       webcam.height = 353;
-      conPhoto = $(photo);
-      conVideo = $(webcam);
-      conPhoto.prependTo($("#primary-container"));
-      conVideo.prependTo($("#primary-container"));
       navigator.getUserMedia || (navigator.getUserMedia = navigator.mozGetUserMedia || navigator.webkitGetUserMedia || navigator.msGetUserMedia);
       this.play();
-      return setupPhotoBooth();
+      return this.setupPhotoBooth();
     }
   };
 
@@ -9507,7 +9496,7 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
 (function() {
 
   $(function() {
-    return webcam.initialize();
+    return webcamAPI.initialize();
   });
 
 }).call(this);
