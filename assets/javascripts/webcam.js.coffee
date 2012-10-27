@@ -31,9 +31,20 @@ window.webcamAPI =
     saveButton.disabled = false
 
   savePhoto: ->
-    data = photo.toDataURL("image/png")
-    data = data.replace("image/png", "image/octet-stream")
-    document.location.href = data
+    data = photo.toDataURL("image/jpeg")
+    if localStorage.images
+      store = JSON.parse(localStorage.images)
+    else
+      store = []
+    store.push
+      data: data
+    localStorage.images = JSON.stringify(store)
+
+  getPhotos: ->
+    if localStorage.images
+      store = JSON.parse(localStorage.images)
+    else
+      store = []
 
   initialize: ->
     webcam.width = 470

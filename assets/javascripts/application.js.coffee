@@ -4,3 +4,6 @@
 
 $ ->
   webcamAPI.initialize()
+
+  for photo in webcamAPI.getPhotos()
+    $('<img />').attr('src', photo.data).appendTo('#past-photos')

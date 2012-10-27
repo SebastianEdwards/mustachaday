@@ -9478,10 +9478,25 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
       return saveButton.disabled = false;
     },
     savePhoto: function() {
-      var data;
-      data = photo.toDataURL("image/png");
-      data = data.replace("image/png", "image/octet-stream");
-      return document.location.href = data;
+      var data, store;
+      data = photo.toDataURL("image/jpeg");
+      if (localStorage.images) {
+        store = JSON.parse(localStorage.images);
+      } else {
+        store = [];
+      }
+      store.push({
+        data: data
+      });
+      return localStorage.images = JSON.stringify(store);
+    },
+    getPhotos: function() {
+      var store;
+      if (localStorage.images) {
+        return store = JSON.parse(localStorage.images);
+      } else {
+        return store = [];
+      }
     },
     initialize: function() {
       webcam.width = 470;
@@ -9496,7 +9511,15 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
 (function() {
 
   $(function() {
-    return webcamAPI.initialize();
+    var photo, _i, _len, _ref, _results;
+    webcamAPI.initialize();
+    _ref = webcamAPI.getPhotos();
+    _results = [];
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      photo = _ref[_i];
+      _results.push($('<img />').attr('src', photo.data).appendTo('#past-photos'));
+    }
+    return _results;
   });
 
 }).call(this);
