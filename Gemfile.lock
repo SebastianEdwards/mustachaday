@@ -1,0 +1,77 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    coderay (1.0.8)
+    coffee-script (2.2.0)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.4.0)
+    commonjs (0.2.6)
+    execjs (1.4.0)
+      multi_json (~> 1.0)
+    guard (1.5.0)
+      listen (>= 0.4.2)
+      lumberjack (>= 1.0.2)
+      pry (>= 0.9.10)
+      thor (>= 0.14.6)
+    guard-sprockets (0.4.0)
+      guard (>= 1.1.0)
+      sprockets (~> 2.0)
+    haml (3.1.7)
+    hike (1.2.1)
+    kgio (2.7.4)
+    less (2.2.2)
+      commonjs (~> 0.2.6)
+    libv8 (3.3.10.4)
+    listen (0.5.3)
+    lumberjack (1.0.2)
+    method_source (0.8.1)
+    multi_json (1.3.6)
+    pry (0.9.10)
+      coderay (~> 1.0.5)
+      method_source (~> 0.8)
+      slop (~> 3.3.1)
+    rack (1.4.1)
+    rack-protection (1.2.0)
+      rack
+    raindrops (0.10.0)
+    redis (3.0.2)
+    shotgun (0.9)
+      rack (>= 1.0)
+    sinatra (1.3.3)
+      rack (~> 1.3, >= 1.3.6)
+      rack-protection (~> 1.2)
+      tilt (~> 1.3, >= 1.3.3)
+    slop (3.3.3)
+    sprockets (2.8.0)
+      hike (~> 1.2)
+      multi_json (~> 1.0)
+      rack (~> 1.0)
+      tilt (~> 1.1, != 1.3.0)
+    therubyracer (0.10.2)
+      libv8 (~> 3.3.10)
+    thor (0.16.0)
+    tilt (1.3.3)
+    uglifier (1.3.0)
+      execjs (>= 0.3.0)
+      multi_json (~> 1.0, >= 1.0.2)
+    unicorn (4.4.0)
+      kgio (~> 2.6)
+      rack
+      raindrops (~> 0.7)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  coffee-script
+  guard-sprockets
+  haml
+  less
+  redis
+  shotgun
+  sinatra
+  sprockets
+  therubyracer
+  uglifier
+  unicorn
