@@ -8,7 +8,8 @@
       .header
         %h1 Mustachaday!
       %button#snap Snap!
-      %button#save Save
       %video#webcam
       %canvas#photo
       #past-photos
+      %form{action: '/gif', method: 'post'}
+        %button GIF Me!

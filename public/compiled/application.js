@@ -9461,21 +9461,21 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
       return alert("Please accept the getUserMedia permissions! Refresh to try again.");
     },
     setupPhotoBooth: function() {
-      var saveButton, snap;
+      var snap,
+        _this = this;
       snap = $("#snap");
-      snap.click(this.takePhoto);
-      saveButton = $("#save");
-      saveButton.disabled = true;
-      return saveButton.click(this.savePhoto);
+      return snap.click(function() {
+        _this.takePhoto();
+        _this.savePhoto();
+        return _this.rollOutPhoto();
+      });
     },
     takePhoto: function() {
-      var context, saveButton;
+      var context;
       photo.width = webcam.width;
       photo.height = webcam.height;
       context = photo.getContext("2d");
-      context.drawImage(webcam, 0, 0, photo.width, photo.height);
-      saveButton = document.getElementById("save");
-      return saveButton.disabled = false;
+      return context.drawImage(webcam, 0, 0, photo.width, photo.height);
     },
     savePhoto: function() {
       var data, store;
@@ -9485,10 +9485,16 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
       } else {
         store = [];
       }
-      store.push({
+      store.unshift({
         data: data
       });
       return localStorage.images = JSON.stringify(store);
+    },
+    rollOutPhoto: function() {
+      var photo;
+      photo = webcamAPI.getPhotos()[0];
+      $('<img />').attr('src', photo.data).prependTo('#past-photos');
+      return $('<input type="hidden"></input>').val(photo.data).prependTo('form');
     },
     getPhotos: function() {
       var store;
@@ -9517,7 +9523,8 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
     _results = [];
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       photo = _ref[_i];
-      _results.push($('<img />').attr('src', photo.data).appendTo('#past-photos'));
+      $('<img />').attr('src', photo.data).appendTo('#past-photos');
+      _results.push($('<input type="hidden"></input>').val(photo.data).prependTo('form'));
     }
     return _results;
   });

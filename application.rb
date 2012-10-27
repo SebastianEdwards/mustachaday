@@ -6,3 +6,7 @@ require 'redis'
 get '/' do
   haml :index
 end
+
+post '/' do
+	# Sebs stuff
+end

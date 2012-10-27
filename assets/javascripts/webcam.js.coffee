@@ -17,18 +17,16 @@ window.webcamAPI =
 
   setupPhotoBooth: ->
     snap = $("#snap")
-    snap.click @takePhoto
-    saveButton = $("#save")
-    saveButton.disabled = true
-    saveButton.click @savePhoto
+    snap.click =>
+      @takePhoto()
+      @savePhoto()
+      @rollOutPhoto()
 
   takePhoto: ->
     photo.width = webcam.width
     photo.height = webcam.height
     context = photo.getContext("2d")
     context.drawImage webcam, 0, 0, photo.width, photo.height
-    saveButton = document.getElementById("save")
-    saveButton.disabled = false
 
   savePhoto: ->
     data = photo.toDataURL("image/jpeg")
@@ -36,9 +34,14 @@ window.webcamAPI =
       store = JSON.parse(localStorage.images)
     else
       store = []
-    store.push
+    store.unshift
       data: data
     localStorage.images = JSON.stringify(store)
+
+  rollOutPhoto: ->
+    photo = webcamAPI.getPhotos()[0]
+    $('<img />').attr('src', photo.data).prependTo('#past-photos')
+    $('<input type="hidden"></input>').val(photo.data).prependTo('form')
 
   getPhotos: ->
     if localStorage.images
