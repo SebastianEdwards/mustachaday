@@ -8,6 +8,7 @@ window.webcamAPI =
       alert "getUserMedia is not supported in this browser.", true
 
   onSuccess: (stream) ->
+    $('#snap').removeAttr 'disabled'
     source = window.webkitURL.createObjectURL(stream)
     webcam.autoplay = true
     webcam.src = source

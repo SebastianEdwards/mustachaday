@@ -9453,6 +9453,7 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
     },
     onSuccess: function(stream) {
       var source;
+      $('#snap').removeAttr('disabled');
       source = window.webkitURL.createObjectURL(stream);
       webcam.autoplay = true;
       return webcam.src = source;
