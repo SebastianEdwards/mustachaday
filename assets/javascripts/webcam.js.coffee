@@ -39,7 +39,10 @@ window.webcamAPI =
       data: data
     localStorage.images = JSON.stringify(store)
 
-  rollOutPhoto: -> @addPhoto webcamAPI.getPhotos()[0], true
+  rollOutPhoto: ->
+    photos = webcamAPI.getPhotos()
+    lastPhoto = photos.slice(-1)[0]
+    @addPhoto lastPhoto, photos.length - 1, true
 
   getPhotos: ->
     if localStorage.images
