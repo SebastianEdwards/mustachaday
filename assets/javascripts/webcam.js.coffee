@@ -58,7 +58,7 @@ window.webcamAPI =
       $("form input[data-id=#{id}]").remove()
       @deletePhoto id
     blob = photo.data.replace(/data:image\/jpeg;base64,/, '')
-    $('<input name="images[]" type="hidden"></input>').attr('data-id', id).val(blob).prependTo('form')
+    $('<input name="images[]" type="hidden"></input>').attr('data-id', id).val(blob).appendTo('form')
 
   addPhotos: ->
     for photo, i in @getPhotos()

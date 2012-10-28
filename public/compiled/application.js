@@ -9518,7 +9518,7 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
         return _this.deletePhoto(id);
       });
       blob = photo.data.replace(/data:image\/jpeg;base64,/, '');
-      return $('<input name="images[]" type="hidden"></input>').attr('data-id', id).val(blob).prependTo('form');
+      return $('<input name="images[]" type="hidden"></input>').attr('data-id', id).val(blob).appendTo('form');
     },
     addPhotos: function() {
       var i, photo, _i, _len, _ref, _results,
