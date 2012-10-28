@@ -12,7 +12,6 @@ end
 
 post '/gif' do
   gififier = GIFifier.new(params[:images], GIF_STORE)
-  gififier.generate!
 
-  redirect to gififier.url
+  redirect to(gififier.generate!.url)
 end

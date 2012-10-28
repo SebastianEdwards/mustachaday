@@ -17,6 +17,8 @@ class GIFifier
     output_path = File.join('/', 'tmp', filename)
     images.write(output_path)
     @storage.store(filename, open(output_path))
+
+    self
   end
 
   def url
