@@ -35,24 +35,11 @@ window.webcamAPI =
       store = JSON.parse(localStorage.images)
     else
       store = []
-    store.unshift
+    store.push
       data: data
     localStorage.images = JSON.stringify(store)
 
-  rollOutPhoto: ->
-    photo = webcamAPI.getPhotos()[0]
-    $container = $('<div class="photo-container"></div>').prependTo('#past-photos')
-    $('<img />').attr('src', photo.data)
-      .appendTo($container)
-      .animate({
-        marginTop: '0px'
-        }, 3000, 'linear')
-    $('<div class="delete-photo"></div>').appendTo($container).click ->
-      console.log 'hi'
-      $container.remove()
-      # TODO: Need to actually delete the photo from local storage too.
-    blob = photo.data.replace(/data:image\/jpeg;base64,/, '')
-    $('<input name="images[]" type="hidden"></input>').val(blob).prependTo('form')
+  rollOutPhoto: -> @addPhoto webcamAPI.getPhotos()[0], true
 
   getPhotos: ->
     if localStorage.images
@@ -60,21 +47,21 @@ window.webcamAPI =
     else
       store = []
 
-  # Having two methods for adding photos is dumb. We are looping through the
-  # current set of photos and outputting them with a specific markup while 
-  # having to maintain this same markup when snapping a photo. Let's fix 
-  # this at some point.
+  addPhoto: (photo, id, animate=false) ->
+    $container = $('<div class="photo-container"></div>').attr('data-id', id).prependTo('#past-photos')
+    $('<img />').attr('src', photo.data).appendTo($container)
+    $('<div class="delete-photo"></div>').appendTo($container).click ->
+      $container.remove()
+      # TODO: Need to actually delete the photo from local storage too.
+    blob = photo.data.replace(/data:image\/jpeg;base64,/, '')
+    $('<input name="images[]" type="hidden"></input>').val(blob).prependTo('form')
+
+  addPhotos: ->
+    for photo, i in webcamAPI.getPhotos()
+      do (photo) => @addPhoto photo, i
 
   initialize: ->
-    for photo in webcamAPI.getPhotos()
-      do (photo) ->
-        $container = $('<div class="photo-container"></div>').appendTo('#past-photos')
-        $('<img />').attr('src', photo.data).appendTo($container)
-        $('<div class="delete-photo"></div>').appendTo($container).click ->
-          $container.remove()
-          # TODO: Need to actually delete the photo from local storage too.
-        blob = photo.data.replace(/data:image\/jpeg;base64,/, '')
-        $('<input name="images[]" type="hidden"></input>').val(blob).prependTo('form')
+    @addPhotos()
     webcam.width = 470
     webcam.height = 353
     navigator.getUserMedia or= (navigator.mozGetUserMedia or navigator.webkitGetUserMedia or navigator.msGetUserMedia)
