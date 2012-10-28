@@ -9486,24 +9486,13 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
       } else {
         store = [];
       }
-      store.unshift({
+      store.push({
         data: data
       });
       return localStorage.images = JSON.stringify(store);
     },
     rollOutPhoto: function() {
-      var $container, blob, photo;
-      photo = webcamAPI.getPhotos()[0];
-      $container = $('<div class="photo-container"></div>').prependTo('#past-photos');
-      $('<img />').attr('src', photo.data).appendTo($container).animate({
-        marginTop: '0px'
-      }, 3000, 'linear');
-      $('<div class="delete-photo"></div>').appendTo($container).click(function() {
-        console.log('hi');
-        return $container.remove();
-      });
-      blob = photo.data.replace(/data:image\/jpeg;base64,/, '');
-      return $('<input name="images[]" type="hidden"></input>').val(blob).prependTo('form');
+      return this.addPhoto(webcamAPI.getPhotos()[0], true);
     },
     getPhotos: function() {
       var store;
@@ -9513,23 +9502,34 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
         return store = [];
       }
     },
-    initialize: function() {
-      var photo, _fn, _i, _len, _ref;
-      _ref = webcamAPI.getPhotos();
-      _fn = function(photo) {
-        var $container, blob;
-        $container = $('<div class="photo-container"></div>').appendTo('#past-photos');
-        $('<img />').attr('src', photo.data).appendTo($container);
-        $('<div class="delete-photo"></div>').appendTo($container).click(function() {
-          return $container.remove();
-        });
-        blob = photo.data.replace(/data:image\/jpeg;base64,/, '');
-        return $('<input name="images[]" type="hidden"></input>').val(blob).prependTo('form');
-      };
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        photo = _ref[_i];
-        _fn(photo);
+    addPhoto: function(photo, id, animate) {
+      var $container, blob;
+      if (animate == null) {
+        animate = false;
       }
+      $container = $('<div class="photo-container"></div>').attr('data-id', id).prependTo('#past-photos');
+      $('<img />').attr('src', photo.data).appendTo($container);
+      $('<div class="delete-photo"></div>').appendTo($container).click(function() {
+        return $container.remove();
+      });
+      blob = photo.data.replace(/data:image\/jpeg;base64,/, '');
+      return $('<input name="images[]" type="hidden"></input>').val(blob).prependTo('form');
+    },
+    addPhotos: function() {
+      var i, photo, _i, _len, _ref, _results,
+        _this = this;
+      _ref = webcamAPI.getPhotos();
+      _results = [];
+      for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
+        photo = _ref[i];
+        _results.push((function(photo) {
+          return _this.addPhoto(photo, i);
+        })(photo));
+      }
+      return _results;
+    },
+    initialize: function() {
+      this.addPhotos();
       webcam.width = 470;
       webcam.height = 353;
       navigator.getUserMedia || (navigator.getUserMedia = navigator.mozGetUserMedia || navigator.webkitGetUserMedia || navigator.msGetUserMedia);
@@ -9542,33 +9542,7 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
 (function() {
 
   $(function() {
-    var container, foto, photo, _i, _len, _ref;
-    webcamAPI.initialize();
-    _ref = webcamAPI.getPhotos();
-    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-      photo = _ref[_i];
-      if (photo.data !== "") {
-        container = $('<div class="photo-container"></div>');
-        foto = $('<img />').attr('src', photo.data).appendTo('#past-photos');
-        container.appendTo('#past-photos');
-        foto.appendTo(container);
-        $('<div class="delete-photo"></div>').appendTo(container);
-        $('<input type="hidden"></input>').val(photo.data).prependTo('form');
-      }
-    }
-    return $('.delete-photo').click(function() {
-      var newPhotoData, originalPhotoData, store, thisPhotoData;
-      container = $(this).parent('.photo-container');
-      thisPhotoData = container.find('img').attr('src');
-      originalPhotoData = localStorage.images;
-      newPhotoData = originalPhotoData.replace(thisPhotoData, '');
-      store = JSON.parse(newPhotoData);
-      localStorage.images = JSON.stringify(store);
-      if (JSON.parse(localStorage.images).data === "") {
-        localStorage.clear();
-      }
-      return container.remove();
-    });
+    return webcamAPI.initialize();
   });
 
 }).call(this);
