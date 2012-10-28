@@ -9557,16 +9557,10 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
       }
     }
     return $('.delete-photo').click(function() {
-      var newPhotoData, originalPhotoData, store, thisPhotoData;
-      container = $(this).parent('.photo-container');
+      var dataId, thisPhotoData;
+      dataId = $(this).parent('.photo-container').attr('data-id');
+      console.log(dataId);
       thisPhotoData = container.find('img').attr('src');
-      originalPhotoData = localStorage.images;
-      newPhotoData = originalPhotoData.replace(thisPhotoData, '');
-      store = JSON.parse(newPhotoData);
-      localStorage.images = JSON.stringify(store);
-      if (JSON.parse(localStorage.images).data === "") {
-        localStorage.clear();
-      }
       return container.remove();
     });
   });
