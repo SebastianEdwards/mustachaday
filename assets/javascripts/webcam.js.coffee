@@ -51,7 +51,7 @@ window.webcamAPI =
     if localStorage.images
       store = JSON.parse(localStorage.images)
     else
-      store = []    
+      store = []
 
   initialize: ->
     webcam.width = 470

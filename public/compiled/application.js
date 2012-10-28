@@ -9524,15 +9524,26 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
     _ref = webcamAPI.getPhotos();
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       photo = _ref[_i];
-      container = $('<div class="photo-container"></div>');
-      foto = $('<img />').attr('src', photo.data).appendTo('#past-photos');
-      container.appendTo('#past-photos');
-      foto.appendTo(container);
-      $('<div class="delete-photo"></div>').appendTo(container);
-      $('<input type="hidden"></input>').val(photo.data).prependTo('form');
+      if (photo.data !== "") {
+        container = $('<div class="photo-container"></div>');
+        foto = $('<img />').attr('src', photo.data).appendTo('#past-photos');
+        container.appendTo('#past-photos');
+        foto.appendTo(container);
+        $('<div class="delete-photo"></div>').appendTo(container);
+        $('<input type="hidden"></input>').val(photo.data).prependTo('form');
+      }
     }
     return $('.delete-photo').click(function() {
+      var newPhotoData, originalPhotoData, store, thisPhotoData;
       container = $(this).parent('.photo-container');
+      thisPhotoData = container.find('img').attr('src');
+      originalPhotoData = localStorage.images;
+      newPhotoData = originalPhotoData.replace(thisPhotoData, '');
+      store = JSON.parse(newPhotoData);
+      localStorage.images = JSON.stringify(store);
+      if (JSON.parse(localStorage.images).data === "") {
+        localStorage.clear();
+      }
       return container.remove();
     });
   });
