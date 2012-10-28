@@ -9492,7 +9492,10 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
       return localStorage.images = JSON.stringify(store);
     },
     rollOutPhoto: function() {
-      return this.addPhoto(webcamAPI.getPhotos()[0], true);
+      var lastPhoto, photos;
+      photos = webcamAPI.getPhotos();
+      lastPhoto = photos.slice(-1)[0];
+      return this.addPhoto(lastPhoto, photos.length - 1, true);
     },
     getPhotos: function() {
       var store;
