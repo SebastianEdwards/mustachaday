@@ -35,7 +35,7 @@ GEM
     rack-protection (1.2.0)
       rack
     raindrops (0.10.0)
-    redis (3.0.2)
+    rmagick (2.13.1)
     shotgun (0.9)
       rack (>= 1.0)
     sinatra (1.3.3)
@@ -68,7 +68,7 @@ DEPENDENCIES
   guard-sprockets
   haml
   less
-  redis
+  rmagick
   shotgun
   sinatra
   sprockets

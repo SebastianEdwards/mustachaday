@@ -40,12 +40,18 @@ window.webcamAPI =
 
   rollOutPhoto: ->
     photo = webcamAPI.getPhotos()[0]
+    $container = $('<div class="photo-container"></div>').prependTo('#past-photos')
     $('<img />').attr('src', photo.data)
-      .prependTo('#past-photos')
+      .appendTo($container)
       .animate({
         marginTop: '0px'
         }, 3000, 'linear')
-    $('<input type="hidden"></input>').val(photo.data).prependTo('form')
+    $('<div class="delete-photo"></div>').appendTo($container).click ->
+      console.log 'hi'
+      $container.remove()
+      # TODO: Need to actually delete the photo from local storage too.
+    blob = photo.data.replace(/data:image\/jpeg;base64,/, '')
+    $('<input name="images[]" type="hidden"></input>').val(blob).prependTo('form')
 
   getPhotos: ->
     if localStorage.images
@@ -53,7 +59,21 @@ window.webcamAPI =
     else
       store = []    
 
+  # Having two methods for adding photos is dumb. We are looping through the
+  # current set of photos and outputting them with a specific markup while 
+  # having to maintain this same markup when snapping a photo. Let's fix 
+  # this at some point.
+
   initialize: ->
+    for photo in webcamAPI.getPhotos()
+      do (photo) ->
+        $container = $('<div class="photo-container"></div>').appendTo('#past-photos')
+        $('<img />').attr('src', photo.data).appendTo($container)
+        $('<div class="delete-photo"></div>').appendTo($container).click ->
+          $container.remove()
+          # TODO: Need to actually delete the photo from local storage too.
+        blob = photo.data.replace(/data:image\/jpeg;base64,/, '')
+        $('<input name="images[]" type="hidden"></input>').val(blob).prependTo('form')
     webcam.width = 470
     webcam.height = 353
     navigator.getUserMedia or= (navigator.mozGetUserMedia or navigator.webkitGetUserMedia or navigator.msGetUserMedia)

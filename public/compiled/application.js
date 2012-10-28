@@ -9491,12 +9491,18 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
       return localStorage.images = JSON.stringify(store);
     },
     rollOutPhoto: function() {
-      var photo;
+      var $container, blob, photo;
       photo = webcamAPI.getPhotos()[0];
-      $('<img />').attr('src', photo.data).prependTo('#past-photos').animate({
+      $container = $('<div class="photo-container"></div>').prependTo('#past-photos');
+      $('<img />').attr('src', photo.data).appendTo($container).animate({
         marginTop: '0px'
       }, 3000, 'linear');
-      return $('<input type="hidden"></input>').val(photo.data).prependTo('form');
+      $('<div class="delete-photo"></div>').appendTo($container).click(function() {
+        console.log('hi');
+        return $container.remove();
+      });
+      blob = photo.data.replace(/data:image\/jpeg;base64,/, '');
+      return $('<input name="images[]" type="hidden"></input>').val(blob).prependTo('form');
     },
     getPhotos: function() {
       var store;
@@ -9507,6 +9513,22 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
       }
     },
     initialize: function() {
+      var photo, _fn, _i, _len, _ref;
+      _ref = webcamAPI.getPhotos();
+      _fn = function(photo) {
+        var $container, blob;
+        $container = $('<div class="photo-container"></div>').appendTo('#past-photos');
+        $('<img />').attr('src', photo.data).appendTo($container);
+        $('<div class="delete-photo"></div>').appendTo($container).click(function() {
+          return $container.remove();
+        });
+        blob = photo.data.replace(/data:image\/jpeg;base64,/, '');
+        return $('<input name="images[]" type="hidden"></input>').val(blob).prependTo('form');
+      };
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        photo = _ref[_i];
+        _fn(photo);
+      }
       webcam.width = 470;
       webcam.height = 353;
       navigator.getUserMedia || (navigator.getUserMedia = navigator.mozGetUserMedia || navigator.webkitGetUserMedia || navigator.msGetUserMedia);
@@ -9519,22 +9541,7 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
 (function() {
 
   $(function() {
-    var container, foto, photo, _i, _len, _ref;
-    webcamAPI.initialize();
-    _ref = webcamAPI.getPhotos();
-    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-      photo = _ref[_i];
-      container = $('<div class="photo-container"></div>');
-      foto = $('<img />').attr('src', photo.data).appendTo('#past-photos');
-      container.appendTo('#past-photos');
-      foto.appendTo(container);
-      $('<div class="delete-photo"></div>').appendTo(container);
-      $('<input type="hidden"></input>').val(photo.data).prependTo('form');
-    }
-    return $('.delete-photo').click(function() {
-      container = $(this).parent('.photo-container');
-      return container.remove();
-    });
+    return webcamAPI.initialize();
   });
 
 }).call(this);
