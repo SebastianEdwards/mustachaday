@@ -31,18 +31,18 @@ window.webcamAPI =
 
   savePhoto: ->
     data = photo.toDataURL("image/jpeg")
-    if localStorage.images
-      store = JSON.parse(localStorage.images)
-    else
-      store = []
-    store.push
+    photos = @getPhotos()
+    photos.push
       data: data
-    localStorage.images = JSON.stringify(store)
+    @setPhotos(photos)
 
   rollOutPhoto: ->
-    photos = webcamAPI.getPhotos()
+    photos = @getPhotos()
     lastPhoto = photos.slice(-1)[0]
     @addPhoto lastPhoto, photos.length - 1, true
+
+  setPhotos: (photos) ->
+    localStorage.images = JSON.stringify(photos)
 
   getPhotos: ->
     if localStorage.images
@@ -51,17 +51,24 @@ window.webcamAPI =
       store = []
 
   addPhoto: (photo, id, animate=false) ->
-    $container = $('<div class="photo-container"></div>').attr('data-id', id).prependTo('#past-photos')
+    $container = $('<div class="photo-container"></div>').prependTo('#past-photos')
     $('<img />').attr('src', photo.data).appendTo($container)
-    $('<div class="delete-photo"></div>').appendTo($container).click ->
+    $('<div class="delete-photo"></div>').appendTo($container).click =>
       $container.remove()
-      # TODO: Need to actually delete the photo from local storage too.
+      $("form input[data-id=#{id}]").remove()
+      @deletePhoto id
     blob = photo.data.replace(/data:image\/jpeg;base64,/, '')
-    $('<input name="images[]" type="hidden"></input>').val(blob).prependTo('form')
+    $('<input name="images[]" type="hidden"></input>').attr('data-id', id).val(blob).prependTo('form')
 
   addPhotos: ->
-    for photo, i in webcamAPI.getPhotos()
+    for photo, i in @getPhotos()
       do (photo) => @addPhoto photo, i
+
+  deletePhoto: (id) ->
+    photos = @getPhotos()
+    delete photos[id]
+    photos = $.map photos, (p) -> p
+    @setPhotos(photos)
 
   initialize: ->
     @addPhotos()

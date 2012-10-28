@@ -9479,23 +9479,22 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
       return context.drawImage(webcam, 0, 0, photo.width, photo.height);
     },
     savePhoto: function() {
-      var data, store;
+      var data, photos;
       data = photo.toDataURL("image/jpeg");
-      if (localStorage.images) {
-        store = JSON.parse(localStorage.images);
-      } else {
-        store = [];
-      }
-      store.push({
+      photos = this.getPhotos();
+      photos.push({
         data: data
       });
-      return localStorage.images = JSON.stringify(store);
+      return this.setPhotos(photos);
     },
     rollOutPhoto: function() {
       var lastPhoto, photos;
-      photos = webcamAPI.getPhotos();
+      photos = this.getPhotos();
       lastPhoto = photos.slice(-1)[0];
       return this.addPhoto(lastPhoto, photos.length - 1, true);
+    },
+    setPhotos: function(photos) {
+      return localStorage.images = JSON.stringify(photos);
     },
     getPhotos: function() {
       var store;
@@ -9506,22 +9505,25 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
       }
     },
     addPhoto: function(photo, id, animate) {
-      var $container, blob;
+      var $container, blob,
+        _this = this;
       if (animate == null) {
         animate = false;
       }
-      $container = $('<div class="photo-container"></div>').attr('data-id', id).prependTo('#past-photos');
+      $container = $('<div class="photo-container"></div>').prependTo('#past-photos');
       $('<img />').attr('src', photo.data).appendTo($container);
       $('<div class="delete-photo"></div>').appendTo($container).click(function() {
-        return $container.remove();
+        $container.remove();
+        $("form input[data-id=" + id + "]").remove();
+        return _this.deletePhoto(id);
       });
       blob = photo.data.replace(/data:image\/jpeg;base64,/, '');
-      return $('<input name="images[]" type="hidden"></input>').val(blob).prependTo('form');
+      return $('<input name="images[]" type="hidden"></input>').attr('data-id', id).val(blob).prependTo('form');
     },
     addPhotos: function() {
       var i, photo, _i, _len, _ref, _results,
         _this = this;
-      _ref = webcamAPI.getPhotos();
+      _ref = this.getPhotos();
       _results = [];
       for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
         photo = _ref[i];
@@ -9530,6 +9532,15 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
         })(photo));
       }
       return _results;
+    },
+    deletePhoto: function(id) {
+      var photos;
+      photos = this.getPhotos();
+      delete photos[id];
+      photos = $.map(photos, function(p) {
+        return p;
+      });
+      return this.setPhotos(photos);
     },
     initialize: function() {
       this.addPhotos();
