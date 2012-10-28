@@ -14,7 +14,7 @@ class GIFifier
   end
 
   def generate!
-    output_path = File.join('tmp', filename)
+    output_path = File.join('/', 'tmp', filename)
     images.write(output_path)
     @storage.store(filename, open(output_path))
   end
