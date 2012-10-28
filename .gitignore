@@ -1,3 +1,4 @@
 .DS_Store
 .rvmrc
-/public/gif/*
+/tmp/*
+.env

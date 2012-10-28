@@ -2,8 +2,8 @@ require 'rmagick'
 require 'securerandom'
 
 class GIFifier
-  def initialize(base64_encoded_images, output_dir)
-    @output_dir = output_dir
+  def initialize(base64_encoded_images, storage)
+    @storage = storage
     base64_encoded_images.each do |image|
       images << Magick::Image.read_inline(image)[0]
     end
@@ -14,8 +14,13 @@ class GIFifier
   end
 
   def generate!
-    output_path = File.join(@output_dir, filename)
+    output_path = File.join('tmp', filename)
     images.write(output_path)
+    @storage.store(filename, open(output_path))
+  end
+
+  def url
+    @storage.url + '/' + filename
   end
 
   private
