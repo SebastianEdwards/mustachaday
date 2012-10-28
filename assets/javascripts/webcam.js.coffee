@@ -40,14 +40,18 @@ window.webcamAPI =
 
   rollOutPhoto: ->
     photo = webcamAPI.getPhotos()[0]
-    $('<img />').attr('src', photo.data).prependTo('#past-photos')
+    $('<img />').attr('src', photo.data)
+      .prependTo('#past-photos')
+      .animate({
+        marginTop: '0px'
+        }, 3000, 'linear')
     $('<input type="hidden"></input>').val(photo.data).prependTo('form')
 
   getPhotos: ->
     if localStorage.images
       store = JSON.parse(localStorage.images)
     else
-      store = []
+      store = []    
 
   initialize: ->
     webcam.width = 470

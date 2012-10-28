@@ -180,6 +180,21 @@ h4 {
 #photo {
   display: none;
 }
+#past-photos {
+  overflow: hidden;
+  position: relative;
+}
+#past-photos .img {
+  position: relative;
+  padding: 20px;
+  background: green;
+  display: block;
+}
+.delete-photo {
+  width: 10px;
+  height: 10px;
+  background: red;
+}
 /************************ Footer ************************/
 /************************ Media Querie(s) ************************/
 /* You're styles should be written for mobile first and then adapted as the screen size moves up. Read this for reasons why http://www.netmagazine.com/interviews/luke-wroblewski-mobile-first. */

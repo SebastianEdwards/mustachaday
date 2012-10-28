@@ -9493,7 +9493,9 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
     rollOutPhoto: function() {
       var photo;
       photo = webcamAPI.getPhotos()[0];
-      $('<img />').attr('src', photo.data).prependTo('#past-photos');
+      $('<img />').attr('src', photo.data).prependTo('#past-photos').animate({
+        marginTop: '0px'
+      }, 3000, 'linear');
       return $('<input type="hidden"></input>').val(photo.data).prependTo('form');
     },
     getPhotos: function() {
@@ -9517,16 +9519,22 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
 (function() {
 
   $(function() {
-    var photo, _i, _len, _ref, _results;
+    var container, foto, photo, _i, _len, _ref;
     webcamAPI.initialize();
     _ref = webcamAPI.getPhotos();
-    _results = [];
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       photo = _ref[_i];
-      $('<img />').attr('src', photo.data).appendTo('#past-photos');
-      _results.push($('<input type="hidden"></input>').val(photo.data).prependTo('form'));
+      container = $('<div class="photo-container"></div>');
+      foto = $('<img />').attr('src', photo.data).appendTo('#past-photos');
+      container.appendTo('#past-photos');
+      foto.appendTo(container);
+      $('<div class="delete-photo"></div>').appendTo(container);
+      $('<input type="hidden"></input>').val(photo.data).prependTo('form');
     }
-    return _results;
+    return $('.delete-photo').click(function() {
+      container = $(this).parent('.photo-container');
+      return container.remove();
+    });
   });
 
 }).call(this);
