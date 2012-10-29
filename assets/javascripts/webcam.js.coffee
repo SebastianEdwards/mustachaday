@@ -8,7 +8,7 @@ window.webcamAPI =
       alert "getUserMedia is not supported in this browser.", true
 
   onSuccess: (stream) ->
-    $('#snap').removeAttr 'disabled'
+    $('.snap').removeAttr 'disabled'
     source = window.webkitURL.createObjectURL(stream)
     webcam.autoplay = true
     webcam.src = source
@@ -17,7 +17,7 @@ window.webcamAPI =
     alert "Please accept the getUserMedia permissions! Refresh to try again."
 
   setupPhotoBooth: ->
-    snap = $("#snap")
+    snap = $(".snap")
     snap.click =>
       @takePhoto()
       @savePhoto()
@@ -51,7 +51,7 @@ window.webcamAPI =
       store = []
 
   addPhoto: (photo, id, animate=false) ->
-    $container = $('<div class="photo-container"></div>').prependTo('#past-photos')
+    $container = $('<div class="photo-container"></div>').prependTo('.past-photos')
     $('<img />').attr('src', photo.data).appendTo($container)
     $('<div class="delete-photo"></div>').appendTo($container).click =>
       $container.remove()

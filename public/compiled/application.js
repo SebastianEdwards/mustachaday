@@ -9453,7 +9453,7 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
     },
     onSuccess: function(stream) {
       var source;
-      $('#snap').removeAttr('disabled');
+      $('.snap').removeAttr('disabled');
       source = window.webkitURL.createObjectURL(stream);
       webcam.autoplay = true;
       return webcam.src = source;
@@ -9464,7 +9464,7 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
     setupPhotoBooth: function() {
       var snap,
         _this = this;
-      snap = $("#snap");
+      snap = $(".snap");
       return snap.click(function() {
         _this.takePhoto();
         _this.savePhoto();
@@ -9510,7 +9510,7 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
       if (animate == null) {
         animate = false;
       }
-      $container = $('<div class="photo-container"></div>').prependTo('#past-photos');
+      $container = $('<div class="photo-container"></div>').prependTo('.past-photos');
       $('<img />').attr('src', photo.data).appendTo($container);
       $('<div class="delete-photo"></div>').appendTo($container).click(function() {
         $container.remove();
