@@ -10,6 +10,7 @@ window.webcamAPI =
   onSuccess: (stream) ->
     $('.snap').removeAttr 'disabled'
     $('.gif').removeAttr 'disabled'
+    $('.video-overlay').delay(1000).show(0)
     source = window.webkitURL.createObjectURL(stream)
     webcam.autoplay = true
     webcam.src = source

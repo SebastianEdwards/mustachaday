@@ -9455,6 +9455,7 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
       var source;
       $('.snap').removeAttr('disabled');
       $('.gif').removeAttr('disabled');
+      $('.video-overlay').delay(1000).show(0);
       source = window.webkitURL.createObjectURL(stream);
       webcam.autoplay = true;
       return webcam.src = source;
