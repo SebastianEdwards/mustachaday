@@ -9,16 +9,21 @@
         .header
           %h1 MOUSTACH-A-DAY
         .moustache-icon
-      .video-container
-        %video#webcam
-        .video-overlay
-        .snap-overlay
-      .buttons.group
-        %button.snap{disabled: 'disabled'} Snap!
-        %form.gif-form{action: '/gif', method: 'post'}
-          %button.gif{disabled: 'disabled'} GIF Me!
-      %canvas#photo
-      .photo-roll-outlet
+      .z-indexing  
+        .video-container
+          %video#webcam
+          .video-overlay
+          .snap-overlay
+        .buttons.group
+          %button.snap{disabled: 'disabled'} Snap!
+          %form.gif-form{action: '/gif', method: 'post'}
+            %button.gif{disabled: 'disabled'} GIF Me!
+        %canvas#photo
+        .photo-roll-outlet
+      .slot
+        .overlay-photo-roll-slot
+        
+      .fake-photo-roll-outlet
         .photo-roll-slot
       .past-photos
       

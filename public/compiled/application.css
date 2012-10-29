@@ -200,6 +200,11 @@ h4 {
   -webkit-transform: rotate(-30deg);
   background: url('/images/moustache.png') no-repeat;
 }
+.z-indexing {
+  position: relative;
+  z-index: 10;
+  background: white;
+}
 /************************ Content ************************/
 .buttons {
   margin-bottom: 40px;
@@ -278,7 +283,7 @@ h4 {
   height: 353px;
   position: absolute;
   right: 60px;
-  top: 0;
+  top: 60px;
   background: white;
   display: none;
 }
@@ -287,28 +292,60 @@ h4 {
 }
 .photo-roll-outlet {
   position: relative;
-  padding: 60px 30px;
+  padding: 60px 30px 0 30px;
   margin: 40px 0;
   border-radius: 10px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
   box-shadow: inset 0 1px 0 white, 0 0 0 1px gainsboro;
   background-color: #f5f5f5;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#f5f5f5), to(#e8e8e8));
   background-image: -webkit-linear-gradient(top, #f5f5f5, #e8e8e8);
-  background-image: -moz-linear-gradient(top, #f5f5f5, #e8e8e8);
-  background-image: -o-linear-gradient(top, #f5f5f5, #e8e8e8);
-  background-image: linear-gradient(to bottom, #f5f5f5, #e8e8e8);
+}
+.fake-photo-roll-outlet {
+  position: relative;
+  padding: 30px;
+  top: -56px;
+  border-radius: 10px;
+  box-shadow: 0 0 0 1px gainsboro;
+  border-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  background-color: #f5f5f5;
+  background-image: -webkit-linear-gradient(top, #f5f5f5, #e8e8e8);
+}
+.slot {
+  z-index: 11;
+  position: relative;
+  top: -105px;
+}
+.overlay-photo-roll-slot {
+  width: 530px;
+  margin: auto;
+  top: 63px;
 }
 .photo-roll-slot {
-  width: 100%;
   height: 10px;
   border-radius: 3px;
   border-top: 1px solid rgba(0, 0, 0, 0.3);
   box-shadow: inset 0 -2px 1px 0px rgba(127, 127, 127, 0.8);
   background: black;
+  position: relative;
+  top: -20px;
+}
+.overlay-photo-roll-slot {
+  height: 5px;
+  border-radius: 3px;
+  border-top: 1px solid rgba(0, 0, 0, 0.3);
+  background: black;
+  position: relative;
+  z-index: 10;
 }
 .photo-container {
   position: relative;
   width: 470px;
+  padding: 20px;
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.3);
   margin: auto;
 }
 .delete-photo {
