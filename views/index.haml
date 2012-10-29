@@ -9,9 +9,11 @@
         .header
           %h1 MOUSTACH-A-DAY
         .moustache-icon
-      %button.snap{disabled: 'disabled'} Snap!
+      .buttons.group
+        %button.snap{disabled: 'disabled'} Snap!
+        %form.gif-form{action: '/gif', method: 'post'}
+          %button.gif{disabled: 'disabled'} GIF Me!
       %video#webcam
       %canvas#photo
       .past-photos
-      %form{action: '/gif', method: 'post'}
-        %button GIF Me!
+      
