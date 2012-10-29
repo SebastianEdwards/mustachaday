@@ -9,6 +9,7 @@ window.webcamAPI =
 
   onSuccess: (stream) ->
     $('.snap').removeAttr 'disabled'
+    $('.gif').removeAttr 'disabled'
     source = window.webkitURL.createObjectURL(stream)
     webcam.autoplay = true
     webcam.src = source
@@ -52,8 +53,8 @@ window.webcamAPI =
 
   addPhoto: (photo, id, animate=false) ->
     $container = $('<div class="photo-container"></div>').prependTo('.past-photos')
-    $('<img />').attr('src', photo.data).appendTo($container)
-    $('<div class="delete-photo"></div>').appendTo($container).click =>
+    $('<img class="photo" />').attr('src', photo.data).appendTo($container)
+    $('<div class="delete-photo">&#10006;</div>').appendTo($container).click =>
       $container.remove()
       $("form input[data-id=#{id}]").remove()
       @deletePhoto id
@@ -63,6 +64,12 @@ window.webcamAPI =
   addPhotos: ->
     for photo, i in @getPhotos()
       do (photo) => @addPhoto photo, i
+
+  displayOptions: ->
+    $(this).find('.delete-photo').show()
+
+  hideOptions: ->
+    $(this).find('.delete-photo').hide()
 
   deletePhoto: (id) ->
     photos = @getPhotos()

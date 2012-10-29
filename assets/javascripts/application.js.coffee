@@ -4,3 +4,4 @@
 
 $ ->
   webcamAPI.initialize()
+  $('.photo-container').hover webcamAPI.displayOptions, webcamAPI.hideOptions

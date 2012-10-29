@@ -9454,6 +9454,7 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
     onSuccess: function(stream) {
       var source;
       $('.snap').removeAttr('disabled');
+      $('.gif').removeAttr('disabled');
       source = window.webkitURL.createObjectURL(stream);
       webcam.autoplay = true;
       return webcam.src = source;
@@ -9511,8 +9512,8 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
         animate = false;
       }
       $container = $('<div class="photo-container"></div>').prependTo('.past-photos');
-      $('<img />').attr('src', photo.data).appendTo($container);
-      $('<div class="delete-photo"></div>').appendTo($container).click(function() {
+      $('<img class="photo" />').attr('src', photo.data).appendTo($container);
+      $('<div class="delete-photo">&#10006;</div>').appendTo($container).click(function() {
         $container.remove();
         $("form input[data-id=" + id + "]").remove();
         return _this.deletePhoto(id);
@@ -9532,6 +9533,12 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
         })(photo));
       }
       return _results;
+    },
+    displayOptions: function() {
+      return $(this).find('.delete-photo').show();
+    },
+    hideOptions: function() {
+      return $(this).find('.delete-photo').hide();
     },
     deletePhoto: function(id) {
       var photos;
@@ -9556,7 +9563,8 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
 (function() {
 
   $(function() {
-    return webcamAPI.initialize();
+    webcamAPI.initialize();
+    return $('.photo-container').hover(webcamAPI.displayOptions, webcamAPI.hideOptions);
   });
 
 }).call(this);
