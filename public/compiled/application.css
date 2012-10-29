@@ -363,6 +363,9 @@ body {
   border-top: 0;
   margin: auto;
 }
+.photo-container:hover .delete-photo {
+  display: block;
+}
 .delete-photo {
   display: none;
   width: 20px;

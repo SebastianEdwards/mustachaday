@@ -9563,12 +9563,6 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
       }
       return _results;
     },
-    displayOptions: function() {
-      return $(this).find('.delete-photo').show();
-    },
-    hideOptions: function() {
-      return $(this).find('.delete-photo').hide();
-    },
     deletePhoto: function(id) {
       var photos;
       photos = this.getPhotos();
@@ -9592,8 +9586,7 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
 (function() {
 
   $(function() {
-    webcamAPI.initialize();
-    return $('.photo-container').hover(webcamAPI.displayOptions, webcamAPI.hideOptions);
+    return webcamAPI.initialize();
   });
 
 }).call(this);

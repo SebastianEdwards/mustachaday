@@ -95,12 +95,6 @@ window.webcamAPI =
     for photo, i in @getPhotos()
       do (photo) => @addPhoto photo, i
 
-  displayOptions: ->
-    $(this).find('.delete-photo').show()
-
-  hideOptions: ->
-    $(this).find('.delete-photo').hide()
-
   deletePhoto: (id) ->
     photos = @getPhotos()
     delete photos[id]
