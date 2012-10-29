@@ -9523,6 +9523,7 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
         animate = false;
       }
       if (animate) {
+        $('.snap').attr('disabled', 'disabled');
         mainContainer = $('.past-photos-container').css({
           marginTop: '-513px'
         });
@@ -9537,7 +9538,9 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
         $('<input name="images[]" type="hidden"></input>').attr('data-id', id).val(blob).appendTo('form');
         return mainContainer.animate({
           marginTop: '0px'
-        }, 4000, 'linear');
+        }, 4000, 'linear', function() {
+          return $('.snap').removeAttr('disabled');
+        });
       } else {
         $container = $('<div class="photo-container"></div>').prependTo('.past-photos-container');
         $('<img class="photo" />').attr('src', photo.data).appendTo($container);
