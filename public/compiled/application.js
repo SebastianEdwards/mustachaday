@@ -9475,10 +9475,20 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
     },
     takePhoto: function() {
       var context;
+      this.snapEffect();
       photo.width = webcam.width;
       photo.height = webcam.height;
       context = photo.getContext("2d");
       return context.drawImage(webcam, 0, 0, photo.width, photo.height);
+    },
+    snapEffect: function() {
+      return $('.snap-overlay').show().animate({
+        opacity: 0
+      }, 1000, function() {
+        return $(this).hide().css({
+          opacity: 1
+        });
+      });
     },
     savePhoto: function() {
       var data, photos;

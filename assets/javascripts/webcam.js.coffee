@@ -26,10 +26,22 @@ window.webcamAPI =
       @rollOutPhoto()
 
   takePhoto: ->
+    @snapEffect()
     photo.width = webcam.width
     photo.height = webcam.height
     context = photo.getContext("2d")
     context.drawImage webcam, 0, 0, photo.width, photo.height
+
+  snapEffect: ->
+    $('.snap-overlay')
+      .show()
+      .animate({
+        opacity: 0
+        }, 1000, ->
+          $(this)
+            .hide()
+            .css(opacity: 1)
+          )
 
   savePhoto: ->
     data = photo.toDataURL("image/jpeg")

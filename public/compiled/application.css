@@ -263,6 +263,15 @@ h4 {
   background: url('/images/video-overlay.svg') no-repeat;
   display: none;
 }
+.snap-overlay {
+  width: 470px;
+  height: 353px;
+  position: absolute;
+  right: 60px;
+  top: 0;
+  background: white;
+  display: none;
+}
 #photo {
   display: none;
 }
