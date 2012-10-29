@@ -65,14 +65,31 @@ window.webcamAPI =
       store = []
 
   addPhoto: (photo, id, animate=false) ->
-    $container = $('<div class="photo-container"></div>').prependTo('.past-photos')
-    $('<img class="photo" />').attr('src', photo.data).appendTo($container)
-    $('<div class="delete-photo">&#10006;</div>').appendTo($container).click =>
-      $container.remove()
-      $("form input[data-id=#{id}]").remove()
-      @deletePhoto id
-    blob = photo.data.replace(/data:image\/jpeg;base64,/, '')
-    $('<input name="images[]" type="hidden"></input>').attr('data-id', id).val(blob).appendTo('form')
+    # Will clean this up laters
+    if animate
+      mainContainer = $('.past-photos-container').css(marginTop: '-513px')
+      $container = $('<div class="photo-container"></div>').prependTo('.past-photos-container')
+      $('<img class="photo" />').attr('src', photo.data).appendTo($container)
+
+      $('<div class="delete-photo">&#10006;</div>').appendTo($container).click =>
+        $container.remove()
+        $("form input[data-id=#{id}]").remove()
+        @deletePhoto id
+
+      blob = photo.data.replace(/data:image\/jpeg;base64,/, '')
+      $('<input name="images[]" type="hidden"></input>').attr('data-id', id).val(blob).appendTo('form')
+
+      mainContainer.animate({marginTop: '0px'}, 4000, 'linear')
+      
+    else
+      $container = $('<div class="photo-container"></div>').prependTo('.past-photos-container')
+      $('<img class="photo" />').attr('src', photo.data).appendTo($container)
+      $('<div class="delete-photo">&#10006;</div>').appendTo($container).click =>
+        $container.remove()
+        $("form input[data-id=#{id}]").remove()
+        @deletePhoto id
+      blob = photo.data.replace(/data:image\/jpeg;base64,/, '')
+      $('<input name="images[]" type="hidden"></input>').attr('data-id', id).val(blob).appendTo('form')
 
   addPhotos: ->
     for photo, i in @getPhotos()
