@@ -163,6 +163,9 @@ h4 {
   font-size: 1em;
 }
 /************************ Global Elements ************************/
+body {
+  padding-bottom: 60px;
+}
 .container {
   margin: auto;
   width: 590px;
@@ -341,8 +344,11 @@ h4 {
   z-index: 10;
 }
 .past-photos {
-  margin-top: -115px;
   position: relative;
+  width: 512px;
+  margin: auto;
+  margin-top: -115px;
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.5);
 }
 .past-photos-container {
   position: relative;
@@ -362,8 +368,8 @@ h4 {
   width: 20px;
   height: 20px;
   position: absolute;
-  top: -8px;
-  right: -8px;
+  top: 5px;
+  right: 5px;
   background: black;
   border: 3px solid white;
   border-radius: 40px;
