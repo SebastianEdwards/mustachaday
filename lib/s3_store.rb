@@ -1,6 +1,6 @@
 require 'aws/s3'
 
-class GIFStore
+class S3Store
   def initialize(s3_key, s3_secret, s3_bucket)
     AWS::S3::Base.establish_connection!({
       access_key_id:      s3_key,

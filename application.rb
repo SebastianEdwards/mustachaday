@@ -3,9 +3,9 @@ require 'rubygems'
 require 'sinatra'
 require 'json'
 require './lib/gififier'
-require './lib/gif_store'
+require './lib/s3_store'
 
-GIF_STORE = GIFStore.new(ENV['S3_KEY'], ENV['S3_SECRET'], ENV['S3_BUCKET'])
+GIF_STORE = S3Store.new(ENV['S3_KEY'], ENV['S3_SECRET'], ENV['S3_BUCKET'])
 
 get '/' do
   haml :index
