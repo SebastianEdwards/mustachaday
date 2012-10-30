@@ -409,12 +409,12 @@ body {
   top: 0;
   left: 0;
   z-index: 100;
-  position: fixed;
-  margin-left: -235px;
-  margin-top: -176px;
 }
 .overlay img {
   top: 50%;
+  position: fixed;
+  margin-left: -235px;
+  margin-top: -176px;
   left: 50%;
 }
 /* Mustachaday stylesheet manifest
