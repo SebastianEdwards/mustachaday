@@ -9467,10 +9467,21 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
       var snap,
         _this = this;
       snap = $(".snap");
-      return snap.click(function() {
+      snap.click(function() {
         _this.takePhoto();
         _this.savePhoto();
         return _this.rollOutPhoto();
+      });
+      return $('button.gif').click(function() {
+        _this.makeGIF();
+        return false;
+      });
+    },
+    makeGIF: function() {
+      var data;
+      data = $('form').serialize();
+      return $.post('/gif', data, function(resp) {
+        return $("<div class='overlay'><img src='" + resp.gif + "' /></div>").appendTo($('body'));
       });
     },
     takePhoto: function() {

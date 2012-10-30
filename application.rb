@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 require 'rubygems'
 require 'sinatra'
+require 'json'
 require './lib/gififier'
 require './lib/gif_store'
 
@@ -11,7 +12,12 @@ get '/' do
 end
 
 post '/gif' do
-  gififier = GIFifier.new(params[:images], GIF_STORE)
+  gififier = GIFifier.new(params[:images], GIF_STORE).generate!
 
-  redirect to(gififier.generate!.url)
+  if @env["HTTP_X_REQUESTED_WITH"] == "XMLHttpRequest"
+    content_type 'application/json'
+    {gif: gififier.url}.to_json
+  else
+    redirect to(gififier.url)
+  end
 end

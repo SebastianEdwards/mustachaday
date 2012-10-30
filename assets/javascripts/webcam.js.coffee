@@ -24,6 +24,14 @@ window.webcamAPI =
       @takePhoto()
       @savePhoto()
       @rollOutPhoto()
+    $('button.gif').click =>
+      @makeGIF()
+      false
+
+  makeGIF: ->
+    data = $('form').serialize()
+    $.post '/gif', data, (resp) ->
+      $("<div class='overlay'><img src='#{resp.gif}' /></div>").appendTo($('body'))
 
   takePhoto: ->
     @snapEffect()
