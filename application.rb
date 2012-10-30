@@ -4,8 +4,13 @@ require 'sinatra'
 require 'json'
 require './lib/gififier'
 require './lib/s3_store'
+require './lib/local_store'
 
-GIF_STORE = S3Store.new(ENV['S3_KEY'], ENV['S3_SECRET'], ENV['S3_BUCKET'])
+if ENV['RUBY_ENV'] == 'development'
+  GIF_STORE = LocalStore.new(File.join('public', 'gif'), 'gif')
+else
+  GIF_STORE = S3Store.new(ENV['S3_KEY'], ENV['S3_SECRET'], ENV['S3_BUCKET'])
+end
 
 get '/' do
   haml :index
