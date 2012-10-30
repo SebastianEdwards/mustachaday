@@ -168,63 +168,59 @@ body {
 }
 .container {
   margin: auto;
-  width: 590px;
+  margin-top: 60px;
+  width: 520px;
 }
-/************************ Header ************************/
-.mast-head {
+/************************ Misc ************************/
+.group:after {
+  display: table;
+  clear: both;
+  content: "";
+}
+.wrap {
+  padding: 3px;
+  border-radius: 2px;
+  -webkit-box-shadow: inset 0 1px 1px #E1DFCE , 0 1px 1px #E1DFCE;
+}
+.moustache-a-day-tool {
   position: relative;
+  padding: 22px;
+  background: -webkit-gradient(linear, 0 bottom, 0 top, from(#d8d5be), to(#f0efe5));
 }
-.mast-head .header {
-  margin: 40px 0;
-  padding: 20px 0 15px 0;
-  text-align: center;
-  border-radius: 10px;
-  box-shadow: inset 0 1px 0 white, 0 0 0 1px gainsboro;
-  background-color: #f5f5f5;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#f5f5f5), to(#e8e8e8));
-  background-image: -webkit-linear-gradient(top, #f5f5f5, #e8e8e8);
-  background-image: -moz-linear-gradient(top, #f5f5f5, #e8e8e8);
-  background-image: -o-linear-gradient(top, #f5f5f5, #e8e8e8);
-  background-image: linear-gradient(to bottom, #f5f5f5, #e8e8e8);
-}
-.mast-head .header h1 {
-  font-size: 4em;
-  color: transparent;
-  background-color: rgba(82, 96, 117, 0.3);
-  -webkit-background-clip: text;
-  text-shadow: rgba(255, 255, 255, 0.3) 0 3px 6px;
-}
-.mast-head .moustache-icon {
-  width: 158px;
-  height: 72px;
-  position: absolute;
-  bottom: -20px;
-  right: -67px;
-  -webkit-transform: rotate(-30deg);
-  background: url('/images/moustache.png') no-repeat;
-}
-.z-indexing {
+.video-container {
   position: relative;
-  z-index: 10;
-  background: white;
+  z-index: 1;
 }
-/************************ Content ************************/
 .buttons {
-  margin-bottom: 40px;
+  margin: 25px 0 20px 0;
 }
 .snap,
 .gif {
   border: none;
-  padding: 20px 0 15px 0;
+  padding: 10px;
   text-align: center;
-  border-radius: 10px;
-  font-size: 26px;
+  font-size: 16px;
   color: rgba(141, 150, 162, 0.7);
+  width: 223px;
 }
 .snap:hover,
 .gif:hover {
   cursor: pointer;
   color: #8d96a2;
+}
+.fissure-wrap {
+  position: relative;
+  width: 470px;
+  padding: 3px 0;
+  margin: 0 auto;
+  background: #D9D6C3;
+  border-radius: 25px;
+}
+.fissure {
+  height: 4px;
+  background: #D0CFBE;
+  border-radius: 25px;
+  box-shadow: inset 0 1px 1px #736D43, 0 1px 0 white;
 }
 .snap {
   box-shadow: inset 0 1px 0 white, 0 0 0 1px gainsboro;
@@ -234,17 +230,13 @@ body {
   background-image: -moz-linear-gradient(top, #f5f5f5, #e8e8e8);
   background-image: -o-linear-gradient(top, #f5f5f5, #e8e8e8);
   background-image: linear-gradient(to bottom, #f5f5f5, #e8e8e8);
-  width: 275px;
-  margin-right: 36px;
+  margin-right: 20px;
 }
 .gif-form {
   display: inline;
 }
 .gif-form .gif {
   border: none;
-  padding: 20px 0 15px 0;
-  text-align: center;
-  border-radius: 10px;
   box-shadow: inset 0 1px 0 white, 0 0 0 1px gainsboro;
   background-color: #f5f5f5;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#f5f5f5), to(#e8e8e8));
@@ -252,106 +244,16 @@ body {
   background-image: -moz-linear-gradient(top, #f5f5f5, #e8e8e8);
   background-image: -o-linear-gradient(top, #f5f5f5, #e8e8e8);
   background-image: linear-gradient(to bottom, #f5f5f5, #e8e8e8);
-  width: 275px;
-}
-.video-container {
-  position: relative;
-  padding: 60px;
-  margin: 40px 0;
-  border-radius: 10px;
-  box-shadow: inset 0 1px 0 white, 0 0 0 1px gainsboro;
-  background-color: #f5f5f5;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#f5f5f5), to(#e8e8e8));
-  background-image: -webkit-linear-gradient(top, #f5f5f5, #e8e8e8);
-  background-image: -moz-linear-gradient(top, #f5f5f5, #e8e8e8);
-  background-image: -o-linear-gradient(top, #f5f5f5, #e8e8e8);
-  background-image: linear-gradient(to bottom, #f5f5f5, #e8e8e8);
-}
-#webcam {
-  margin: auto;
-  display: block;
-  width: 470px;
-  height: 353px;
-}
-.video-overlay {
-  width: 470px;
-  height: 353px;
-  position: absolute;
-  top: 60px;
-  background: url('/images/video-overlay.svg') no-repeat;
-  display: none;
-}
-.snap-overlay {
-  width: 470px;
-  height: 353px;
-  position: absolute;
-  right: 60px;
-  top: 60px;
-  background: white;
-  display: none;
 }
 #photo {
   display: none;
 }
-.photo-roll-outlet {
-  position: relative;
-  padding: 60px 30px 0 30px;
-  margin: 40px 0;
-  border-radius: 10px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-  box-shadow: inset 0 1px 0 white, 0 0 0 1px gainsboro;
-  background-color: #f5f5f5;
-  background-image: -webkit-linear-gradient(top, #f5f5f5, #e8e8e8);
-}
-.fake-photo-roll-outlet {
-  position: relative;
-  padding: 30px;
-  top: -56px;
-  border-radius: 10px;
-  box-shadow: 0 0 0 1px gainsboro;
-  border-top: 0;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  background-color: #f5f5f5;
-  background-image: -webkit-linear-gradient(top, #f5f5f5, #e8e8e8);
-}
-.slot {
-  z-index: 11;
-  position: relative;
-  top: -105px;
-}
-.overlay-photo-roll-slot {
-  width: 530px;
-  margin: auto;
-  top: 63px;
-}
-.photo-roll-slot {
-  height: 10px;
-  border-radius: 3px;
-  border-top: 1px solid rgba(0, 0, 0, 0.3);
-  box-shadow: inset 0 -2px 1px 0px rgba(127, 127, 127, 0.8);
-  background: black;
-  position: relative;
-  top: -20px;
-}
-.overlay-photo-roll-slot {
-  height: 5px;
-  border-radius: 3px;
-  border-top: 1px solid rgba(0, 0, 0, 0.3);
-  background: black;
-  position: relative;
-  z-index: 10;
-}
-.past-photos {
+.photo-roll {
+  display: none;
   position: relative;
   width: 512px;
   margin: auto;
-  margin-top: -115px;
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.5);
-}
-.past-photos-container {
-  position: relative;
 }
 .photo-container {
   position: relative;
@@ -384,22 +286,93 @@ body {
 .delete-photo:hover {
   cursor: pointer;
 }
-/************************ Footer ************************/
-/************************ Media Querie(s) ************************/
-/* You're styles should be written for mobile first and then adapted as the screen size moves up. Read this for reasons why http://www.netmagazine.com/interviews/luke-wroblewski-mobile-first. */
-/* Tablet */
-@media only screen and (min-width: 720px) {
-  
+.bar {
+  position: absolute;
+  z-index: 0;
+  left: 50%;
+  margin-left: -100px;
+  margin-top: 190px;
+  height: 20px;
+  width: 200px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.1);
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  border-radius: 20px;
+  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03), inset 0 1px 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03), inset 0 1px 0 rgba(0, 0, 0, 0.1);
+  -ms-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03), inset 0 1px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03), inset 0 1px 0 rgba(0, 0, 0, 0.1);
 }
-/* Desktop */
-@media only screen and (min-width: 960px) {
-  
+.bar span {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border: 1px solid #ff9a1a;
+  border-bottom-color: #ff6201;
+  background-color: #d3d3d3;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  border-radius: 20px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  background-image: -webkit-linear-gradient(-45deg, #ff9a1a 25%, transparent 25%, transparent 50%, #ff9a1a 50%, #ff9a1a 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, #ff9a1a 25%, transparent 25%, transparent 50%, #ff9a1a 50%, #ff9a1a 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, #ff9a1a 25%, transparent 25%, transparent 50%, #ff9a1a 50%, #ff9a1a 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, #ff9a1a 25%, transparent 25%, transparent 50%, #ff9a1a 50%, #ff9a1a 75%, transparent 75%, transparent);
+  -webkit-background-size: 50px 50px;
+  -moz-background-size: 50px 50px;
+  -ms-background-size: 50px 50px;
+  background-size: 50px 50px;
+  -webkit-animation: move 2s linear infinite;
+  -moz-animation: move 2s linear infinite;
+  -ms-animation: move 2s linear infinite;
+  animation: move 2s linear infinite;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  border-radius: 20px;
+  overflow: hidden;
+  -webkit-box-shadow: inset 0 10px 0 rgba(255, 255, 255, 0.2);
+  -moz-box-shadow: inset 0 10px 0 rgba(255, 255, 255, 0.2);
+  -ms-box-shadow: inset 0 10px 0 rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0 10px 0 rgba(255, 255, 255, 0.2);
 }
-/************************ Misc ************************/
-.group:after {
-  display: table;
-  clear: both;
-  content: "";
+@-webkit-keyframes move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+@-moz-keyframes move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+@-ms-keyframes move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+@keyframes move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
 }
 /* Mustachaday stylesheet manifest
 *

@@ -9517,41 +9517,20 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
       }
     },
     addPhoto: function(photo, id, animate) {
-      var $container, blob, mainContainer,
+      var $container, blob,
         _this = this;
       if (animate == null) {
         animate = false;
       }
-      if (animate) {
-        $('.snap').attr('disabled', 'disabled');
-        mainContainer = $('.past-photos-container').css({
-          marginTop: '-513px'
-        });
-        $container = $('<div class="photo-container"></div>').prependTo('.past-photos-container');
-        $('<img class="photo" />').attr('src', photo.data).appendTo($container);
-        $('<div class="delete-photo">&#10006;</div>').appendTo($container).click(function() {
-          $container.remove();
-          $("form input[data-id=" + id + "]").remove();
-          return _this.deletePhoto(id);
-        });
-        blob = photo.data.replace(/data:image\/jpeg;base64,/, '');
-        $('<input name="images[]" type="hidden"></input>').attr('data-id', id).val(blob).appendTo('form');
-        return mainContainer.animate({
-          marginTop: '0px'
-        }, 4000, 'linear', function() {
-          return $('.snap').removeAttr('disabled');
-        });
-      } else {
-        $container = $('<div class="photo-container"></div>').prependTo('.past-photos-container');
-        $('<img class="photo" />').attr('src', photo.data).appendTo($container);
-        $('<div class="delete-photo">&#10006;</div>').appendTo($container).click(function() {
-          $container.remove();
-          $("form input[data-id=" + id + "]").remove();
-          return _this.deletePhoto(id);
-        });
-        blob = photo.data.replace(/data:image\/jpeg;base64,/, '');
-        return $('<input name="images[]" type="hidden"></input>').attr('data-id', id).val(blob).appendTo('form');
-      }
+      $container = $('<div class="photo-container"></div>').prependTo('.photo-roll');
+      $('<img class="photo" />').attr('src', photo.data).appendTo($container);
+      $('<div class="delete-photo">&#10006;</div>').appendTo($container).click(function() {
+        $container.remove();
+        $("form input[data-id=" + id + "]").remove();
+        return _this.deletePhoto(id);
+      });
+      blob = photo.data.replace(/data:image\/jpeg;base64,/, '');
+      return $('<input name="images[]" type="hidden"></input>').attr('data-id', id).val(blob).appendTo('form');
     },
     addPhotos: function() {
       var i, photo, _i, _len, _ref, _results,

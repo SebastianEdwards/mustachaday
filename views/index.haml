@@ -5,26 +5,20 @@
     %script{src: '/compiled/application.js'}
   %body
     .container
-      .mast-head
-        .header
-          %h1 MOUSTACH-A-DAY
-        .moustache-icon
-      .z-indexing  
-        .video-container
-          %video#webcam
-          .video-overlay
-          .snap-overlay
-        .buttons.group
-          %button.snap{disabled: 'disabled'} Snap!
-          %form.gif-form{action: '/gif', method: 'post'}
-            %button.gif{disabled: 'disabled'} GIF Me!
-        %canvas#photo
-        .photo-roll-outlet
-      .slot
-        .overlay-photo-roll-slot
-        
-      .fake-photo-roll-outlet
-        .photo-roll-slot
-      .past-photos
-        .past-photos-container
-      
+      .wrap
+        .moustache-a-day-tool
+          .bar
+            %span
+          .video-container
+            %video#webcam
+            .video-overlay
+            .snap-overlay
+          .buttons.group
+            %button.snap{disabled: 'disabled'} Save photo
+            %form.gif-form{action: '/gif', method: 'post'}
+              %button.gif{disabled: 'disabled'} GIF my photos!
+          .slot
+          .fissure-wrap
+            .fissure  
+        .photo-roll
+    %canvas#photo
