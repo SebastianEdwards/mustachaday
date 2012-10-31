@@ -292,7 +292,6 @@ body {
   color: white;
   text-shadow: 0 0 0 -1px rgba(0, 0, 0, 0.8);
   box-shadow: inset 0 2px 0px rgba(255, 255, 255, 0.4);
-  background-image: -webkit-linear-gradient(top, #f5f5f5, #e8e8e8);
   font-size: 1.3em;
 }
 .snap:hover,
@@ -302,8 +301,14 @@ body {
 .snap {
   background-image: -webkit-linear-gradient(bottom, #00425c, #0072a4);
 }
+.snap:hover {
+  background-image: -webkit-linear-gradient(bottom, #0072a4, #00425c);
+}
 .gif {
   background-image: -webkit-linear-gradient(bottom, #206546, #3eb679);
+}
+.gif:hover {
+  background-image: -webkit-linear-gradient(bottom, #3eb679, #206546);
 }
 .slot {
   width: 100%;
@@ -383,7 +388,8 @@ footer div {
 .meter {
   position: absolute;
   z-index: 0;
-  left: 508px;
+  left: 50%;
+  margin-left: -100px;
   top: 190px;
   width: 200px;
   height: 20px;
