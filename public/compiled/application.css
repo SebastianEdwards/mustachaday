@@ -241,6 +241,9 @@ body {
 .buttons {
   margin: 25px 0 20px 0;
 }
+#webcam {
+  -webkit-transform: scale(-2, 1);
+}
 .button-bg {
   background: rgba(0, 0, 0, 0.5);
   padding: 10px;
