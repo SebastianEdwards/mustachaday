@@ -5,7 +5,7 @@ window.webcamAPI =
         video: true
       , @onSuccess, @onError
     else
-      alert "getUserMedia is not supported in this browser.", true
+      $overlay = $("<div class='overlay'><p class='no-chrome'>You need to use Chrome to take cool pictures of your moustache.<br><a href='http://www.google.com/chrome'>Download Chrome Now!</a></p></div>").appendTo($('body'))
 
   onSuccess: (stream) ->
     $('.snap').removeAttr 'disabled'
@@ -29,7 +29,7 @@ window.webcamAPI =
 
   makeGIF: ->
     data = $('form').serialize()
-    overlay = $("<div class='overlay'></div>").appendTo($('body'))
+    overlay = $("<div class='overlay'><div class='meter animate'><span><span></span></span></div></div>").appendTo($('body'))
     $.post '/gif', data, (resp) ->
       $("<img src='#{resp.gif}' /></div>").appendTo(overlay)
       $("<div class='delete-photo'>&#10006;</div>").appendTo(overlay).click ->
@@ -113,18 +113,20 @@ window.webcamAPI =
     if animate
       $wrap = $('.photo-roll-wrap')
       $container = $('<div class="photo-container"></div>')
-      $wrap.css({
-        top: '-354px',
-      })  
       
-      $('<img class="photo" />').attr('src', photo.data).appendTo($container)
+      $wrap
+        .css({
+          top: '-325px',
+        })  
+
+      $('<img class="photo" />').attr('src', photo.data).appendTo($container) 
       $('<div class="delete-photo">&#10006;</div>').appendTo($container).click =>
         $container.remove()
         $("form input[data-id=#{id}]").remove()
         @deletePhoto id
-
+      $container.appendTo($wrap)
       $wrap.animate({
-        top: '0'
+        top: '0px'
         },6000, 'linear')  
 
       blob = photo.data.replace(/data:image\/jpeg;base64,/, '')

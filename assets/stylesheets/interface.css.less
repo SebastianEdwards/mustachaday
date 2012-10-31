@@ -38,6 +38,10 @@
   margin: 25px 0 20px 0;
 }
 
+#webcam {
+  -webkit-transform: scale(-1,1);
+}
+
 .button-bg {
   background: rgba(0, 0, 0, 0.5);
   padding: 10px;
@@ -109,7 +113,6 @@
   position:relative;
   width: 460px;
   margin: auto;
-  box-shadow: 0 0 15px 0 rgba(0,0,0,0.5);
   top: -32px;
 }
 
@@ -125,6 +128,7 @@
   border-top: 0;
   margin: auto;
   border-bottom: 1px dashed #DFDFDF;
+  box-shadow: 0 0 15px 0 rgba(0,0,0,0.5);
   &:hover {
     .delete-photo {
       display:block;
@@ -153,4 +157,8 @@
   &:hover {
     cursor: pointer;
   }
+}
+
+footer div {
+  padding-top: 12px;
 }

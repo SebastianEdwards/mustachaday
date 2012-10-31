@@ -9443,12 +9443,13 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
 
   window.webcamAPI = {
     play: function() {
+      var $overlay;
       if (navigator.getUserMedia) {
         return navigator.getUserMedia({
           video: true
         }, this.onSuccess, this.onError);
       } else {
-        return alert("getUserMedia is not supported in this browser.", true);
+        return $overlay = $("<div class='overlay'><p class='no-chrome'>You need to use Chrome to take cool pictures of your moustache.<br><a href='http://www.google.com/chrome'>Download Chrome Now!</a></p></div>").appendTo($('body'));
       }
     },
     onSuccess: function(stream) {
@@ -9479,7 +9480,7 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
     makeGIF: function() {
       var data, overlay;
       data = $('form').serialize();
-      overlay = $("<div class='overlay'></div>").appendTo($('body'));
+      overlay = $("<div class='overlay'><div class='meter animate'><span><span></span></span></div></div>").appendTo($('body'));
       return $.post('/gif', data, function(resp) {
         $("<img src='" + resp.gif + "' /></div>").appendTo(overlay);
         return $("<div class='delete-photo'>&#10006;</div>").appendTo(overlay).click(function() {
@@ -9541,7 +9542,7 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
         $wrap = $('.photo-roll-wrap');
         $container = $('<div class="photo-container"></div>');
         $wrap.css({
-          top: '-354px'
+          top: '-325px'
         });
         $('<img class="photo" />').attr('src', photo.data).appendTo($container);
         $('<div class="delete-photo">&#10006;</div>').appendTo($container).click(function() {
@@ -9549,8 +9550,9 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
           $("form input[data-id=" + id + "]").remove();
           return _this.deletePhoto(id);
         });
+        $container.appendTo($wrap);
         $wrap.animate({
-          top: '0'
+          top: '0px'
         }, 6000, 'linear');
         blob = photo.data.replace(/data:image\/jpeg;base64,/, '');
         return $('<input name="images[]" type="hidden"></input>').attr('data-id', id).val(blob).appendTo('form');

@@ -167,6 +167,7 @@ button {
 }
 /************************ Global Elements ************************/
 body {
+  background: url('http://subtlepatterns.subtlepatterns.netdna-cdn.com/patterns/farmer.png');
   padding-bottom: 60px;
 }
 .container {
@@ -205,11 +206,33 @@ body {
   margin-left: 222px;
   margin-top: -189px;
 }
+.overlay .no-chrome {
+  color: #fff;
+  top: 50%;
+  left: 50%;
+  width: 800px;
+  margin-left: -400px;
+  margin-top: -20px;
+  position: fixed;
+  text-align: center;
+}
 .logo {
   font-family: "cubano";
   text-align: center;
   font-size: 3.7em;
   color: #22222;
+}
+.subtitle {
+  width: 400px;
+  margin: auto;
+  text-align: center;
+}
+.moustache-icon {
+  width: 158px;
+  height: 73px;
+  background: url('../images/moustache.png') no-repeat;
+  margin: auto;
+  margin-bottom: 10px;
 }
 .video-overlay {
   width: 470px;
@@ -244,6 +267,9 @@ body {
 }
 .buttons {
   margin: 25px 0 20px 0;
+}
+#webcam {
+  -webkit-transform: scale(-1, 1);
 }
 .button-bg {
   background: rgba(0, 0, 0, 0.5);
@@ -309,7 +335,6 @@ body {
   position: relative;
   width: 460px;
   margin: auto;
-  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.5);
   top: -32px;
 }
 .photo-roll-wrap {
@@ -323,6 +348,7 @@ body {
   border-top: 0;
   margin: auto;
   border-bottom: 1px dashed #DFDFDF;
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.5);
 }
 .photo-container:hover .delete-photo {
   display: block;
@@ -349,11 +375,14 @@ body {
 .delete-photo:hover {
   cursor: pointer;
 }
+footer div {
+  padding-top: 12px;
+}
 .meter {
   position: absolute;
   z-index: 0;
-  left: 155px;
-  top: 140px;
+  left: 508px;
+  top: 190px;
   width: 200px;
   height: 20px;
   /* Can be anything */
