@@ -124,7 +124,7 @@ window.webcamAPI =
         $container.remove()
         $("form input[data-id=#{id}]").remove()
         @deletePhoto id
-      $container.appendTo($wrap)
+      $container.prependTo($wrap)
       $wrap.animate({
         top: '0px'
         },6000, 'linear')  

@@ -9550,7 +9550,7 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
           $("form input[data-id=" + id + "]").remove();
           return _this.deletePhoto(id);
         });
-        $container.appendTo($wrap);
+        $container.prependTo($wrap);
         $wrap.animate({
           top: '0px'
         }, 6000, 'linear');
