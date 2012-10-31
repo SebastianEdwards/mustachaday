@@ -13,7 +13,11 @@ else
 end
 
 get '/' do
-  haml :index
+  if ENV.has_key?('HOST') && ENV['HOST'] != @env["HTTP_HOST"]
+    redirect to('http://' + ENV['HOST'])
+  else
+    haml :index
+  end
 end
 
 post '/gif' do
