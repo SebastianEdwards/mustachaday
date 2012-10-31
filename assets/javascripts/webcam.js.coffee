@@ -5,7 +5,7 @@ window.webcamAPI =
         video: true
       , @onSuccess, @onError
     else
-      alert "getUserMedia is not supported in this browser.", true
+      $overlay = $("<div class='overlay'><p class='no-chrome'>You need to use Chrome to take cool pictures of your moustache.<br><a href='http://www.google.com/chrome'>Download Chrome Now!</a></p></div>").appendTo($('body'))
 
   onSuccess: (stream) ->
     $('.snap').removeAttr 'disabled'

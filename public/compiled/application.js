@@ -9443,12 +9443,13 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
 
   window.webcamAPI = {
     play: function() {
+      var $overlay;
       if (navigator.getUserMedia) {
         return navigator.getUserMedia({
           video: true
         }, this.onSuccess, this.onError);
       } else {
-        return alert("getUserMedia is not supported in this browser.", true);
+        return $overlay = $("<div class='overlay'><p class='no-chrome'>You need to use Chrome to take cool pictures of your moustache.<br><a href='http://www.google.com/chrome'>Download Chrome Now!</a></p></div>").appendTo($('body'));
       }
     },
     onSuccess: function(stream) {
