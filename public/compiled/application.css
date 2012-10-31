@@ -343,6 +343,9 @@ body {
 .delete-photo:hover {
   cursor: pointer;
 }
+footer {
+  padding-top: 20px;
+}
 .meter {
   position: absolute;
   z-index: 0;
