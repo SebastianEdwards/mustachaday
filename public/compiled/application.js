@@ -9454,8 +9454,7 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
     onSuccess: function(stream) {
       var source;
       $('.snap').removeAttr('disabled');
-      $('.gif').removeAttr('disabled');
-      $('.video-overlay').delay(1000).show(0);
+      $('.video-overlay').delay(2000).fadeIn(1000);
       source = window.webkitURL.createObjectURL(stream);
       webcam.autoplay = true;
       return webcam.src = source;
@@ -9497,7 +9496,7 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
       return context.drawImage(webcam, 0, 0, photo.width, photo.height);
     },
     snapEffect: function() {
-      return $('.snap-overlay').show().animate({
+      return $('.snap-overlay').show().delay(100).animate({
         opacity: 0
       }, 1000, function() {
         return $(this).hide().css({
@@ -9532,41 +9531,21 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
       }
     },
     addPhoto: function(photo, id, animate) {
-      var $container, blob, mainContainer,
+      var $container, blob,
         _this = this;
       if (animate == null) {
         animate = false;
       }
-      if (animate) {
-        $('.snap').attr('disabled', 'disabled');
-        mainContainer = $('.past-photos-container').css({
-          marginTop: '-513px'
-        });
-        $container = $('<div class="photo-container"></div>').prependTo('.past-photos-container');
-        $('<img class="photo" />').attr('src', photo.data).appendTo($container);
-        $('<div class="delete-photo">&#10006;</div>').appendTo($container).click(function() {
-          $container.remove();
-          $("form input[data-id=" + id + "]").remove();
-          return _this.deletePhoto(id);
-        });
-        blob = photo.data.replace(/data:image\/jpeg;base64,/, '');
-        $('<input name="images[]" type="hidden"></input>').attr('data-id', id).val(blob).appendTo('form');
-        return mainContainer.animate({
-          marginTop: '0px'
-        }, 4000, 'linear', function() {
-          return $('.snap').removeAttr('disabled');
-        });
-      } else {
-        $container = $('<div class="photo-container"></div>').prependTo('.past-photos-container');
-        $('<img class="photo" />').attr('src', photo.data).appendTo($container);
-        $('<div class="delete-photo">&#10006;</div>').appendTo($container).click(function() {
-          $container.remove();
-          $("form input[data-id=" + id + "]").remove();
-          return _this.deletePhoto(id);
-        });
-        blob = photo.data.replace(/data:image\/jpeg;base64,/, '');
-        return $('<input name="images[]" type="hidden"></input>').attr('data-id', id).val(blob).appendTo('form');
-      }
+      $('.gif').removeAttr('disabled');
+      $container = $('<div class="photo-container"></div>').prependTo('.photo-roll');
+      $('<img class="photo" />').attr('src', photo.data).appendTo($container);
+      $('<div class="delete-photo">&#10006;</div>').appendTo($container).click(function() {
+        $container.remove();
+        $("form input[data-id=" + id + "]").remove();
+        return _this.deletePhoto(id);
+      });
+      blob = photo.data.replace(/data:image\/jpeg;base64,/, '');
+      return $('<input name="images[]" type="hidden"></input>').attr('data-id', id).val(blob).appendTo('form');
     },
     addPhotos: function() {
       var i, photo, _i, _len, _ref, _results,

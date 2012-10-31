@@ -118,7 +118,7 @@ ul {
 body {
   color: black;
   font-size: 14px;
-  font-family: sans-serif;
+  font-family: "museo-sans-rounded";
   line-height: 1.8;
 }
 p {
@@ -162,122 +162,60 @@ h3 {
 h4 {
   font-size: 1em;
 }
+button {
+  font-family: "museo-sans-rounded";
+}
 /************************ Global Elements ************************/
 body {
   padding-bottom: 60px;
 }
 .container {
   margin: auto;
-  width: 590px;
-}
-/************************ Header ************************/
-.mast-head {
+  margin-top: 20px;
+  width: 515px;
   position: relative;
 }
-.mast-head .header {
-  margin: 40px 0;
-  padding: 20px 0 15px 0;
-  text-align: center;
-  border-radius: 10px;
-  box-shadow: inset 0 1px 0 white, 0 0 0 1px gainsboro;
-  background-color: #f5f5f5;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#f5f5f5), to(#e8e8e8));
-  background-image: -webkit-linear-gradient(top, #f5f5f5, #e8e8e8);
-  background-image: -moz-linear-gradient(top, #f5f5f5, #e8e8e8);
-  background-image: -o-linear-gradient(top, #f5f5f5, #e8e8e8);
-  background-image: linear-gradient(to bottom, #f5f5f5, #e8e8e8);
+/************************ Misc ************************/
+.group:after {
+  display: table;
+  clear: both;
+  content: "";
 }
-.mast-head .header h1 {
-  font-size: 4em;
-  color: transparent;
-  background-color: rgba(82, 96, 117, 0.3);
-  -webkit-background-clip: text;
-  text-shadow: rgba(255, 255, 255, 0.3) 0 3px 6px;
+.overlay {
+  background: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100;
 }
-.mast-head .moustache-icon {
-  width: 158px;
-  height: 72px;
-  position: absolute;
-  bottom: -20px;
-  right: -67px;
-  -webkit-transform: rotate(-30deg);
-  background: url('/images/moustache.png') no-repeat;
+.overlay img {
+  top: 50%;
+  position: fixed;
+  margin-left: -235px;
+  margin-top: -176px;
+  left: 50%;
 }
-.z-indexing {
+.overlay .delete-photo {
   position: relative;
-  z-index: 10;
-  background: white;
-}
-/************************ Content ************************/
-.buttons {
-  margin-bottom: 40px;
-}
-.snap,
-.gif {
-  border: none;
-  padding: 20px 0 15px 0;
-  text-align: center;
-  border-radius: 10px;
-  font-size: 26px;
-  color: rgba(141, 150, 162, 0.7);
-}
-.snap:hover,
-.gif:hover {
-  cursor: pointer;
-  color: #8d96a2;
-}
-.snap {
-  box-shadow: inset 0 1px 0 white, 0 0 0 1px gainsboro;
-  background-color: #f5f5f5;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#f5f5f5), to(#e8e8e8));
-  background-image: -webkit-linear-gradient(top, #f5f5f5, #e8e8e8);
-  background-image: -moz-linear-gradient(top, #f5f5f5, #e8e8e8);
-  background-image: -o-linear-gradient(top, #f5f5f5, #e8e8e8);
-  background-image: linear-gradient(to bottom, #f5f5f5, #e8e8e8);
-  width: 275px;
-  margin-right: 36px;
-}
-.gif-form {
-  display: inline;
-}
-.gif-form .gif {
-  border: none;
-  padding: 20px 0 15px 0;
-  text-align: center;
-  border-radius: 10px;
-  box-shadow: inset 0 1px 0 white, 0 0 0 1px gainsboro;
-  background-color: #f5f5f5;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#f5f5f5), to(#e8e8e8));
-  background-image: -webkit-linear-gradient(top, #f5f5f5, #e8e8e8);
-  background-image: -moz-linear-gradient(top, #f5f5f5, #e8e8e8);
-  background-image: -o-linear-gradient(top, #f5f5f5, #e8e8e8);
-  background-image: linear-gradient(to bottom, #f5f5f5, #e8e8e8);
-  width: 275px;
-}
-.video-container {
-  position: relative;
-  padding: 60px;
-  margin: 40px 0;
-  border-radius: 10px;
-  box-shadow: inset 0 1px 0 white, 0 0 0 1px gainsboro;
-  background-color: #f5f5f5;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#f5f5f5), to(#e8e8e8));
-  background-image: -webkit-linear-gradient(top, #f5f5f5, #e8e8e8);
-  background-image: -moz-linear-gradient(top, #f5f5f5, #e8e8e8);
-  background-image: -o-linear-gradient(top, #f5f5f5, #e8e8e8);
-  background-image: linear-gradient(to bottom, #f5f5f5, #e8e8e8);
-}
-#webcam {
-  margin: auto;
   display: block;
-  width: 470px;
-  height: 353px;
+  left: 50%;
+  top: 50%;
+  margin-left: 222px;
+  margin-top: -189px;
+}
+.logo {
+  font-family: "cubano";
+  text-align: center;
+  font-size: 3.7em;
+  color: #22222;
 }
 .video-overlay {
   width: 470px;
   height: 353px;
   position: absolute;
-  top: 60px;
+  top: 0px;
   background: url('/images/video-overlay.svg') no-repeat;
   display: none;
 }
@@ -285,73 +223,81 @@ body {
   width: 470px;
   height: 353px;
   position: absolute;
-  right: 60px;
-  top: 60px;
   background: white;
+  top: 0;
   display: none;
+}
+.moustache-a-day-tool {
+  position: relative;
+  padding: 22px;
+  background: -webkit-gradient(linear, 0 bottom, 0 top, from(#d8d5be), to(#f0efe5));
+  background: url('../images/bg.png');
+  border-radius: 5px;
+}
+.video-container {
+  position: relative;
+  z-index: 1;
+}
+.buttons {
+  margin: 25px 0 20px 0;
+}
+.button-bg {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 5px;
+  width: 203px;
+  height: 40px;
+  float: left;
+}
+.first {
+  margin-right: 25px;
+}
+.fissure-wrap {
+  position: relative;
+  width: 470px;
+  padding: 3px 0;
+  margin: 0 auto;
+  background: #D9D6C3;
+  border-radius: 25px;
+}
+.fissure {
+  height: 4px;
+  background: #D0CFBE;
+  border-radius: 25px;
+  box-shadow: inset 0 1px 1px #736D43, 0 1px 0 white;
+}
+.snap,
+.gif {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 3px;
+  color: white;
+  text-shadow: 0 0 0 -1px rgba(0, 0, 0, 0.8);
+  box-shadow: inset 0 2px 0px rgba(255, 255, 255, 0.4);
+  background-image: -webkit-linear-gradient(top, #f5f5f5, #e8e8e8);
+  font-size: 1.3em;
+}
+.snap {
+  background-image: -webkit-linear-gradient(bottom, #00425c, #0072a4);
+}
+.gif {
+  background-image: -webkit-linear-gradient(bottom, #206546, #3eb679);
+}
+.slot {
+  width: 100%;
+  height: 10px;
+  background: black;
 }
 #photo {
   display: none;
 }
-.photo-roll-outlet {
-  position: relative;
-  padding: 60px 30px 0 30px;
-  margin: 40px 0;
-  border-radius: 10px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-  box-shadow: inset 0 1px 0 white, 0 0 0 1px gainsboro;
-  background-color: #f5f5f5;
-  background-image: -webkit-linear-gradient(top, #f5f5f5, #e8e8e8);
-}
-.fake-photo-roll-outlet {
-  position: relative;
-  padding: 30px;
-  top: -56px;
-  border-radius: 10px;
-  box-shadow: 0 0 0 1px gainsboro;
-  border-top: 0;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  background-color: #f5f5f5;
-  background-image: -webkit-linear-gradient(top, #f5f5f5, #e8e8e8);
-}
-.slot {
-  z-index: 11;
-  position: relative;
-  top: -105px;
-}
-.overlay-photo-roll-slot {
-  width: 530px;
-  margin: auto;
-  top: 63px;
-}
-.photo-roll-slot {
-  height: 10px;
-  border-radius: 3px;
-  border-top: 1px solid rgba(0, 0, 0, 0.3);
-  box-shadow: inset 0 -2px 1px 0px rgba(127, 127, 127, 0.8);
-  background: black;
-  position: relative;
-  top: -20px;
-}
-.overlay-photo-roll-slot {
-  height: 5px;
-  border-radius: 3px;
-  border-top: 1px solid rgba(0, 0, 0, 0.3);
-  background: black;
-  position: relative;
-  z-index: 10;
-}
-.past-photos {
+.photo-roll {
+  display: none;
   position: relative;
   width: 512px;
   margin: auto;
-  margin-top: -115px;
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.5);
-}
-.past-photos-container {
-  position: relative;
 }
 .photo-container {
   position: relative;
@@ -384,49 +330,101 @@ body {
 .delete-photo:hover {
   cursor: pointer;
 }
-/************************ Footer ************************/
-/************************ Media Querie(s) ************************/
-/* You're styles should be written for mobile first and then adapted as the screen size moves up. Read this for reasons why http://www.netmagazine.com/interviews/luke-wroblewski-mobile-first. */
-/* Tablet */
-@media only screen and (min-width: 720px) {
-  
+.meter {
+  position: absolute;
+  z-index: 0;
+  left: 155px;
+  top: 140px;
+  width: 200px;
+  height: 20px;
+  /* Can be anything */
+
+  margin: 60px 0 20px 0;
+  /* Just for demo spacing */
+
+  background: #000000;
+  -moz-border-radius: 25px;
+  -webkit-border-radius: 25px;
+  border-radius: 25px;
+  padding: 10px;
+  -webkit-box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.2);
+  -moz-box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.2);
 }
-/* Desktop */
-@media only screen and (min-width: 960px) {
-  
-}
-/************************ Misc ************************/
-.group:after {
-  display: table;
-  clear: both;
-  content: "";
-}
-.overlay {
-  background: rgba(0, 0, 0, 0.8);
-  position: fixed;
+.meter > span {
+  display: block;
   height: 100%;
-  width: 100%;
+  -webkit-border-top-right-radius: 20px;
+  -webkit-border-bottom-right-radius: 20px;
+  -moz-border-radius-topright: 20px;
+  -moz-border-radius-bottomright: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  -webkit-border-top-left-radius: 20px;
+  -webkit-border-bottom-left-radius: 20px;
+  -moz-border-radius-topleft: 20px;
+  -moz-border-radius-bottomleft: 20px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  background-color: #2bc253;
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #2bc253), color-stop(1, #54f054));
+  background-image: -moz-linear-gradient(center bottom, #2bc253 37%, #54f054 69%);
+  -webkit-box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3), inset 0 -2px 6px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3), inset 0 -2px 6px rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3), inset 0 -2px 6px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+.meter > span:after,
+.animate > span > span {
+  content: "";
+  position: absolute;
   top: 0;
   left: 0;
-  z-index: 100;
+  bottom: 0;
+  right: 0;
+  background-image: -webkit-gradient(linear, 0 0, 100% 100%, color-stop(0.25, rgba(255, 255, 255, 0.2)), color-stop(0.25, transparent), color-stop(0.5, transparent), color-stop(0.5, rgba(255, 255, 255, 0.2)), color-stop(0.75, rgba(255, 255, 255, 0.2)), color-stop(0.75, transparent), to(transparent));
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+  z-index: 1;
+  -webkit-background-size: 50px 50px;
+  -moz-background-size: 50px 50px;
+  background-size: 50px 50px;
+  -webkit-animation: move 2s linear infinite;
+  -moz-animation: move 2s linear infinite;
+  -webkit-border-top-right-radius: 20px;
+  -webkit-border-bottom-right-radius: 20px;
+  -moz-border-radius-topright: 20px;
+  -moz-border-radius-bottomright: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  -webkit-border-top-left-radius: 20px;
+  -webkit-border-bottom-left-radius: 20px;
+  -moz-border-radius-topleft: 20px;
+  -moz-border-radius-bottomleft: 20px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  overflow: hidden;
 }
-.overlay img {
-  top: 50%;
-  position: fixed;
-  margin-left: -235px;
-  margin-top: -176px;
-  left: 50%;
+.animate > span:after {
+  display: none;
 }
-.overlay .delete-photo {
-  position: relative;
-  display: block;
-  left: 50%;
-  top: 50%;
-  margin-left: 222px;
-  margin-top: -189px;
+@-webkit-keyframes move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+@-moz-keyframes move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
 }
 /* Mustachaday stylesheet manifest
 *
-
 
 */

@@ -9,8 +9,7 @@ window.webcamAPI =
 
   onSuccess: (stream) ->
     $('.snap').removeAttr 'disabled'
-    $('.gif').removeAttr 'disabled'
-    $('.video-overlay').delay(1000).show(0)
+    $('.video-overlay').delay(2000).fadeIn(1000)
     source = window.webkitURL.createObjectURL(stream)
     webcam.autoplay = true
     webcam.src = source
@@ -46,6 +45,7 @@ window.webcamAPI =
   snapEffect: ->
     $('.snap-overlay')
       .show()
+      .delay(100)
       .animate({
         opacity: 0
         }, 1000, ->
@@ -76,34 +76,20 @@ window.webcamAPI =
       store = []
 
   addPhoto: (photo, id, animate=false) ->
+    $('.gif').removeAttr 'disabled'
     # Will clean this up laters
-    if animate
-      $('.snap').attr('disabled', 'disabled')
-      mainContainer = $('.past-photos-container').css(marginTop: '-513px')
-      $container = $('<div class="photo-container"></div>').prependTo('.past-photos-container')
-      $('<img class="photo" />').attr('src', photo.data).appendTo($container)
-
-      $('<div class="delete-photo">&#10006;</div>').appendTo($container).click =>
-        $container.remove()
-        $("form input[data-id=#{id}]").remove()
-        @deletePhoto id
-
-      blob = photo.data.replace(/data:image\/jpeg;base64,/, '')
-      $('<input name="images[]" type="hidden"></input>').attr('data-id', id).val(blob).appendTo('form')
-
-      mainContainer.animate({marginTop: '0px'}, 4000, 'linear', ->
-        $('.snap').removeAttr 'disabled'
-        )
+    # if animate
       
-    else
-      $container = $('<div class="photo-container"></div>').prependTo('.past-photos-container')
-      $('<img class="photo" />').attr('src', photo.data).appendTo($container)
-      $('<div class="delete-photo">&#10006;</div>').appendTo($container).click =>
-        $container.remove()
-        $("form input[data-id=#{id}]").remove()
-        @deletePhoto id
-      blob = photo.data.replace(/data:image\/jpeg;base64,/, '')
-      $('<input name="images[]" type="hidden"></input>').attr('data-id', id).val(blob).appendTo('form')
+      
+    # else
+    $container = $('<div class="photo-container"></div>').prependTo('.photo-roll')
+    $('<img class="photo" />').attr('src', photo.data).appendTo($container)
+    $('<div class="delete-photo">&#10006;</div>').appendTo($container).click =>
+      $container.remove()
+      $("form input[data-id=#{id}]").remove()
+      @deletePhoto id
+    blob = photo.data.replace(/data:image\/jpeg;base64,/, '')
+    $('<input name="images[]" type="hidden"></input>').attr('data-id', id).val(blob).appendTo('form')
 
   addPhotos: ->
     for photo, i in @getPhotos()
