@@ -417,6 +417,14 @@ body {
   margin-top: -176px;
   left: 50%;
 }
+.overlay .delete-photo {
+  position: relative;
+  display: block;
+  left: 50%;
+  top: 50%;
+  margin-left: 222px;
+  margin-top: -189px;
+}
 /* Mustachaday stylesheet manifest
 *
 

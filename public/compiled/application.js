@@ -9478,10 +9478,14 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
       });
     },
     makeGIF: function() {
-      var data;
+      var data, overlay;
       data = $('form').serialize();
+      overlay = $("<div class='overlay'></div>").appendTo($('body'));
       return $.post('/gif', data, function(resp) {
-        return $("<div class='overlay'><img src='" + resp.gif + "' /></div>").appendTo($('body'));
+        $("<img src='" + resp.gif + "' /></div>").appendTo(overlay);
+        return $("<div class='delete-photo'>&#10006;</div>").appendTo(overlay).click(function() {
+          return $(this).parent().remove();
+        });
       });
     },
     takePhoto: function() {

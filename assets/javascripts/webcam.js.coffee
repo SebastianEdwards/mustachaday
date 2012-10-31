@@ -30,8 +30,11 @@ window.webcamAPI =
 
   makeGIF: ->
     data = $('form').serialize()
+    overlay = $("<div class='overlay'></div>").appendTo($('body'))
     $.post '/gif', data, (resp) ->
-      $("<div class='overlay'><img src='#{resp.gif}' /></div>").appendTo($('body'))
+      $("<img src='#{resp.gif}' /></div>").appendTo(overlay)
+      $("<div class='delete-photo'>&#10006;</div>").appendTo(overlay).click ->
+        $(this).parent().remove()
 
   takePhoto: ->
     @snapEffect()
